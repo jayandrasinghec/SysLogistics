@@ -1,0 +1,64 @@
+<div class="page-container">
+    <div class="component-container mb10">
+        <div class="title-con">File Manager - Upload files for Order ID {{orderID}} for {{headerLabel}}</div>
+        <div class="content-con padding15">
+            <div class="row field-row mb10 align-items-center">
+                <div class="col-md-10">
+                    <label class="label-mandatory width_100px description-label">File Description:</label>
+                    <div class="input-text-con calc_width_100">                       
+                        <app-textarea [value]="formModel.file_Description"
+                        (modelChange)="descriptionChangehandler($event)"
+                        [class]="!isFormValid ? 'h70 error' : 'h70'"
+                        [isEditMode]="!(formModel.file_Description == undefined && formModel.file_Name == undefined)"
+                        [jsonField]="'file_Description'"
+                        ></app-textarea>
+                    </div>
+                </div>
+                <div class="col-md-2 text-right">
+                    <button class="btn btn-primary update_btn" [disabled]="checkBtnDisable()"  type="button" (click)="updateBtnClickhandler($event)"  >Update</button>
+                </div>
+            </div>
+            <div class="table-wrapper mb10">
+                <table class="table text-center table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Copy link</th>
+                            <th>Download</th>
+                            <th>Online</th>
+                            <th>File Name</th>
+                            <th>File Description</th>
+                            <th>Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="fileList && fileList.length>0">
+                        <tr *ngFor="let row of fileList | statusCodefilter;let i = index;">
+                            <td><img src="../../../../assets/images/icon/edit.png" width="15" alt="" (click)="editRow(row,i)" /></td>
+                            <td> </td>
+                            <td><img src="../../../../assets/images/icon/download.png" width="15" alt="" (click)="downloadRow(row,i)" /></td>
+                            <td>{{row.online_Acccess}}</td>
+                            <td>{{row.file_Name}}</td>
+                            <td>{{row.file_Description}}</td>
+                            <td>{{getFormattedDate(row.created_Date)   }}</td>
+                            <td><img src="../../../../assets/images/icon/delete.png" width="15" alt=""  (click)="deleteRow(row,i)"/></td>
+                        </tr>                       
+                    </tbody>
+                </table>
+            </div>
+            <div class="nav-con">
+                <div class="d-flex flex-md-row btn-group-link">            
+                    <button class="mr-auto btn btn-primary" (click)="closeBtnClickhandler($event)" >Close</button>
+                    <div class="ml-auto">
+                        <button class="btn btn-primary"
+                        [disabled]="disabledUpload"
+                        (click)="uploadBtnClickhandler($event)">Upload File</button>                
+                        <button class="btn btn-primary"
+                            [disabled]="disabledSave"
+                        (click)="saveBtnClickhandler()">Save</button>
+                    </div>                
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>

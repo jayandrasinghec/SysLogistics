@@ -1,0 +1,72 @@
+<div class="field-rep-container">
+    <div class="component-container mb10">
+        <div class="title-con">Field Service Rep</div>
+        <div class="content-con padding15">
+            <div class="row field-row mb10">
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-mandatory width_110px">Field Services Rep :</label>
+                    <div class="input-text-con calc_width_110">
+
+                        <app-dropdown-grid [gridList]="ddServiceReps" [headers]="ddServiceRepsHeaders" [required]="true"
+                            [displayKey]="ddServiceRepsHeaders[1][1]"
+                            (selection)="ddServiceRepsSelecthandler($event,ddServiceRepsHeaders[1][1])"
+                            [selectedValue]="fieldRepValue" [reset]="ddReset" [isEditMode]="isEditMode"
+                            [jsonField]="'agentName'">
+                        </app-dropdown-grid>
+
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-6 d-md-flex align-items-start">
+                    <label class="label-mandatory width_60px notes-label">Notes:</label>
+                    <div class="input-text-con calc_width_60">
+                        <app-textarea [value]="formModel.notes" 
+                        (modelChange)="noteChangehandler($event)"
+                        [class]="(!notesValid) ? 'error h70' : 'h70'"
+                        [isEditMode]="true"
+                        [jsonField]="'notes'"
+                        ></app-textarea>
+                    </div>
+                </div>
+                <div class="col-md-2 text-right button-group">
+                    <button class="btn btn-primary tab-w110px mb10" type="button" *ngIf="isEditMode"
+                        (click)="addBtnClickhandler($event)">Add</button>
+                    <button class="btn btn-primary tab-w110px" type="button" *ngIf="!isEditMode"
+                        (click)="updateBtnClickhandler($event)">Update</button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="table text-center table-striped table-bordered table-fixed">
+                    <thead>
+                        <tr>
+                            <th width="15%">Edit</th>
+                            <th width="35%">Field Rep</th>
+                            <th width="35%">Notes</th>
+                            <th width="15%">Delete</th>
+                        </tr>
+                    </thead>
+                    <perfect-scrollbar style="max-height: 330px;">
+                        <tbody>
+                            <tr *ngFor="let row of fieldReps | statusCodefilter;let i= index">
+                                <td width="15%"><img (click)="editClickHandler($event,row,i)"
+                                        src="../../../../assets/images/icon/edit.png" width="15" alt="" /></td>
+                                <td width="35%">{{row.agentName}}</td>
+                                <td width="35%">{{row.notes}}</td>
+                                <td width="15%"><img (click)="deleteClickHandler($event,row,i)"
+                                        src="../../../../assets/images/icon/delete.png" width="15" alt="" /></td>
+                            </tr>
+
+                        </tbody>
+                    </perfect-scrollbar>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-con">
+        <div class="d-flex flex-row">
+            <button class="mr-auto btn btn-primary tab-w110px" (click)="closeBtnClickhandler($event)">Close</button>
+            <button class="ml-auto btn btn-primary tab-w110px" (click)="saveBtnClickhandler($event)">Save</button>
+        </div>
+    </div>
+    
+</div>

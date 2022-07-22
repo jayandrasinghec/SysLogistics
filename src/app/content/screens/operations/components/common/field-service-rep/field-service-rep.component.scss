@@ -1,0 +1,43 @@
+.error{
+	border: 1px solid red;
+}
+
+.field-rep-container {
+	.dropdown-grid-table {
+		width: 250px;
+	}
+	.notes-label {
+		padding-top: 5px;
+	}
+	@media screen and (min-width: 768px) and (max-width: 1024px) {
+		.width_110px {
+			width: 70px;
+		}
+		.calc_width_110 {
+			width: calc(100% - 70px);
+		}
+		.width_60px {
+			width: 40px;
+		}
+		.calc_width_60 {
+			width: calc(100% - 40px);
+		}
+	}
+	@media screen and (max-width: 767px) {
+		.dropdown-grid-table {
+			width: 100%;
+			.table-wrapper {
+				table {
+					width: auto;
+				}
+			} 
+		}
+		.table-wrapper {
+			overflow-x: auto;
+			margin-bottom: 10px;
+			table {
+				width: 768px;
+			}
+		}  
+	}    
+}

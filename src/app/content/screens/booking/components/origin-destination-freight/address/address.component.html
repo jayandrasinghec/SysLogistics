@@ -1,0 +1,250 @@
+<div class="component-container address-container">
+  <div class="title-con">
+    {{title}}
+  </div>
+  <div class="content-con">
+    <div class="row field-row">
+      <div class="col-md-6 col-lg-7 shipperTxt">
+        <label class="label-mandatory width_85px">{{type}}<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85 fw-dropdown dropdownType">
+          <!-- <app-dropdown [options]="ddOptions" [required]="true"></app-dropdown> -->          
+          <app-autopopulate-input-text [required]="true" [displayKey]="ddShipperAddressHeaders[1][1]"
+            [headers]="ddShipperAddressHeaders" [gridList]="ddShipperAddressOptions" [isSearchable]="true"
+            [value]="(isShipper())?addressModel.shipper_Address1:addressModel.consignee_Address1"
+            (serchText)="serchTextChangehandler($event)" [class]="autoComplete"
+            (selection)="ddShipperChangeHandler($event)" [required]="true" [placeHolder]="''"
+            [setFocus]="(isShipper())?true:false" 
+            [isEditMode]="isEditMode"
+            [jsonField]="(isShipper())?'shipper_Address1':'consignee_Address1'">
+            </app-autopopulate-input-text>
+          <!-- <app-dropdown-grid [headers]="ddBookingAgentHeaders" [gridList]="ddBookingAgents" [displayKey]="displayKey"></app-dropdown-grid> -->
+          <!-- <app-autopopulate-input-text [options]="ddOptions" [placeHolder]="''"></app-autopopulate-input-text> -->
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-5 airportTxt">
+        <div class="row">
+          <div class="col-md-7 paddright0 mob-paddlr10">
+            <label class="label-mandatory width_85px">Airport Code<span class="asterisk">*</span>:</label>
+            <div class="input-text-con calc_width_85 aw-dropdown rs-dropdown">
+              <!-- <app-dropdown [options]="ddOptions" (selection)="airportCodeChangehandler($event)" [required]="true" ></app-dropdown> -->
+              <app-dropdown-grid [gridList]="selectedShipperAirportCodes" [headers]="airportCodeHeaders"
+                [displayKey]="airportCodeHeaders[0][1]" (selection)="airportCodeSelectHandler($event)" [reset]="ddReset"
+                [required]="true"
+                [selectedValue]="(isShipper())?addressModel.origin_Air_Code:addressModel.dest_Air_Code"
+                [isEditMode]="isEditMode"
+                [jsonField]="(isShipper())?'shipper_Address1':'consignee_Address1'"></app-dropdown-grid>
+            </div>
+          </div>
+          <div class="col-md-5 paddleft0 mob-paddlr10">
+            <label class="label-mandatory width_50px">Zone<span class="asterisk">*</span>:</label>
+            <div class="input-text-con calc_width_50">
+              <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [required]="true"
+                [value]="(isShipper())? addressModel.origin_Zone:addressModel.dest_Zone"
+                (modelChange)="zoneChangehandler($event)" [tabindex]="-1"
+                >
+              </app-input-text>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row field-row">
+      <div class="col-md-6">
+        <label class="label-mandatory width_85px">Address 1<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85">
+          <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true" [tabindex]="-1"
+            [value]="(isShipper())?addressModel.shipper_Address1:addressModel.consignee_Address1"
+            (modelChange)="addres1Changehandler($event)">
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-md-6 ksmsTxt">
+        <label class="label-mandatory width_85px">KSMS #<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85 aw-dropdown rs-dropdown">
+          <!-- <app-dropdown [options]="ddKsmsCategories" [required]="true"></app-dropdown>-->
+          <!-- <app-dropdown-grid [gridList]="ddKsmsCategories"
+           [required]="true"
+           [headers]="ddKsmsCategoriesHeaders"
+           [displayKey]="ddKsmsCategoriesHeaders[1][1]"
+           (selection)="KsmsCategoriesSelecthandler($event,ddKsmsCategoriesHeaders[0][1])"
+           [selectedValue]="showCode" [reset]="ddReset"></app-dropdown-grid> -->
+          <app-autopopulate-input-text [required]="true" [displayKey]="ddKsmsCategoriesHeaders[1][1]"
+            [headers]="ddKsmsCategoriesHeaders" [gridList]="ddKsmsCategories" [isSearchable]="false"
+            [value]="(isShipper())?addressModel.origin_KSMS_Number:addressModel.dest_KSMS_Number"
+            (serchText)="ksmsTextChangehandler($event)" [class]="autoComplete"
+            (selection)="KsmsCategoriesSelecthandler($event,ddKsmsCategoriesHeaders[1][1])" [placeHolder]="''"
+            [isEditMode]="isEditMode"
+            [jsonField]="(isShipper())?'origin_KSMS_Number':'dest_KSMS_Number'"></app-autopopulate-input-text>
+        </div>
+      </div>
+
+    </div>
+    <div class="row field-row">
+      <div class="col-md-6">
+        <div class="d-flex flex-column flex-md-row mb7 align-items-center">
+          <label class="label-nomandatory width_85px">Address 2:</label>
+          <div class="input-text-con calc_width_85">
+            <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+              [value]="(isShipper())?addressModel.shipper_Address2:addressModel.consignee_Address2"
+              (modelChange)="addres2Changehandler($event)" [tabindex]="-1"></app-input-text>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row mb7 align-items-center">
+          <label class="label-mandatory width_85px">City<span class="asterisk">*</span>:</label>
+          <div class="input-text-con calc_width_85">
+            <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true" [tabindex]="-1"
+              [value]="(isShipper())?addressModel.shipper_City:addressModel.consignee_City"
+              (modelChange)="cityChangehandler($event)"></app-input-text>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 paddright0 mob-paddlr10">
+            <label class="label-mandatory width_85px">State<span class="asterisk">*</span>:</label>
+            <div class="input-text-con calc_width_85 width_50px">
+              <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true" [tabindex]="-1"
+                [value]="(isShipper())?addressModel.shipper_State:addressModel.consignee_State"
+                (modelChange)="stateChangehandler($event)"></app-input-text>
+            </div>
+          </div>
+          <div class="col-md-6 paddleft0 mob-paddlr10">
+            <div class="input-text-con mob-width100 nopadding">
+              <app-zip-code [placeHolder]="''" [required]="true" [readonly]="true" [tabindex]="-1"
+                [value]="(isShipper())?addressModel.shipper_Zip:addressModel.consignee_Zip"
+                (zipCode)="zipCodeChangeHandler($event)"></app-zip-code>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex mb7 mob-mb10 justify-content-end">
+          <button class="btn btn-primary" [disabled]="!isEditMode?'disabled':''" (click)="gotoSpecialCharges($event)">Special
+            Charges</button>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="gotoViewCharges($event)">View Charges</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="row field-row dateTxt-row">
+      <div class="col-md-3 paddright0 dateTxt">
+        <label class="label-mandatory width_85px">{{label}} Date<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85 datepicker">
+          <input matInput [matDatepicker]="picker" [min]="minDate" (dateChange)="dateChangehandler($event)"
+            placeholder="" [class.notValid]="!isDateValid" [readonly]="is_DP_Editable" [value]="getDate()"
+            (keyup.enter)="isEditMode && picker.open()">
+          <mat-datepicker-toggle matSuffix [for]="isEditMode ? picker : ''"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+      <div class="col-md-3 paddleft5 paddright0">
+        <label class="label-mandatory width_101px">{{label}} Time From<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_101">
+          <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+            [value]="(isShipper())?addressModel.load_Time_From:addressModel.delivery_Time_From"
+            (modelChange)="timeFromChangehandler($event)" 
+            [isEditMode]="isEditMode"
+            [jsonField]="(isShipper())?'load_Time_From':'delivery_Time_From'">
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-md-3 paddleft5 paddright0">
+        <label class="label-mandatory width_101px">{{label}} Time To<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_101">
+          <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+            [model]="selectedAirport" [value]="(isShipper())?addressModel.load_Time_To:addressModel.delivery_Time_To"
+            (modelChange)="timeToChangehandler($event)" 
+            [isEditMode]="isEditMode" [pipe]="'Time'"
+            [jsonField]="(isShipper())?'load_Time_To':'delivery_Time_To'"></app-input-text>
+        </div>
+      </div>
+      <div class="col-md-3 paddleft15 dateSelect">
+        <div class="input-text-con w100 aw-dropdown rs-dropdown">
+          <!-- <app-dropdown [options]="ddTimeOptions" [required]="true" (selection)="TimeCodeChangehandler($event)"></app-dropdown>-->
+          <app-dropdown-grid [gridList]="ddTimeOptions" [headers]="ddTimeOptionsHeaders"
+            [displayKey]="ddTimeOptionsHeaders[1][1]"
+            (selection)="TimeOptionsHeadersSelecthandler($event,ddTimeOptionsHeaders[0][1])"
+            [selectedValue]="(isShipper())?load_Time_Code:delivery_Time_Code" 
+            [isEditMode]="isEditMode"
+            [reset]="ddReset"
+            [jsonField]="(isShipper())?'load_Time_Code':'delivery_Time_Code'"></app-dropdown-grid>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row field-row">
+      <div class="col-md-6">
+        <label class="label-nomandatory width_85px">Attention:</label>
+        <div class="input-text-con calc_width_85 width_80">
+          <app-input-text [type]="'text'" [placeHolder]="''" [isEditMode]="isEditMode"
+            [value]="(isShipper())?addressModel.shipper_Attention:addressModel.consignee_Attention"
+            (modelChange)="AttentionChangehandler($event)"
+            [jsonField]="(isShipper())?'shipper_Attention':'consignee_Attention'">
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <label class="label-nomandatory width_85px">Cell:</label>
+        <div class="input-text-con calc_width_85">
+          <!-- <app-input-text [type]="'mobile'" [placeHolder]="''" [value]="''"  (modelChange)="CellChangehandler($event)" ></app-input-text> -->
+          <app-phone-number [type]="'mobile'" [isEditMode]="isEditMode"
+            [value]="(isShipper())?addressModel.shipper_Cell:addressModel.consignee_Cell"
+            (modelChange)="CellChangehandler($event)" [placeHolder]="''"
+            [jsonField]="(isShipper())?'shipper_Cell':'consignee_Cell'"></app-phone-number>
+        </div>
+      </div>
+    </div>
+    <div class="row field-row">
+      <div class="col-md-6">
+        <label class="label-nomandatory width_85px">Email Address:</label>
+        <div class="input-text-con calc_width_85">
+          <app-input-text [type]="'email'" [placeHolder]="''" [isEditMode]="isEditMode"
+            [value]="(isShipper())?addressModel.shipper_Email:addressModel.consignee_Email"
+            (modelChange)="emailChangehandler($event)"
+            [jsonField]="(isShipper())?'shipper_Email':'consignee_Email'"></app-input-text>
+        </div>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <label class="label-nomandatory width_85px">Phone:</label>
+        <div class="input-text-con calc_width_85">
+          <app-phone-number [type]="'mobile'" [isEditMode]="isEditMode"
+            [value]="(isShipper())?addressModel.shipper_Phone:addressModel.consignee_Phone"
+            (modelChange)="phoneChangehandler($event)" [placeHolder]="''"
+            [jsonField]="(isShipper())?'shipper_Phone':'consignee_Phone'"></app-phone-number>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row field-row">
+      <div class="col-md-6">
+        <label class="label-nomandatory width_85px">Show Code:</label>
+        <div class="input-text-con calc_width_85 width_50 aw-dropdown ls-dropdown">
+
+          <!--  <app-input-text [type]="'text'" [placeHolder]="''"
+          (modelChange)="showCodeChangehandler($event)"
+          ></app-input-text>-->
+
+          <app-dropdown-grid [gridList]="ddshowCodes" [headers]="ddshowCodeHeaders"
+            [displayKey]="ddshowCodeHeaders[1][1]" [isEditMode]="isEditMode"
+            (selection)="showCodesSelecthandler($event,ddshowCodeHeaders[0][1])"
+            [selectedValue]="(isShipper())?origin_Show_ID:dest_Show_ID" [reset]="ddReset"
+            [jsonField]="(isShipper())?'origin_Show_ID':'dest_Show_ID'"></app-dropdown-grid>
+
+        </div>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <label class="label-nomandatory width_85px">Booth:</label>
+        <div class="input-text-con calc_width_85">
+          <app-input-text [type]="'mobile'" [placeHolder]="''" [isEditMode]="isEditMode"
+            [value]="(isShipper())?addressModel.origin_Booth:addressModel.dest_Booth"
+            (modelChange)="boothChangehandler($event)"
+            [jsonField]="(isShipper())?'origin_Booth':'dest_Booth'"></app-input-text>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

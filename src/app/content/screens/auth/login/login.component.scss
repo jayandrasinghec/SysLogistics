@@ -1,0 +1,54 @@
+.login-page {
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding: 0 15px;
+    transform: translate(-50%, -50%);
+    .section-con {
+        margin-bottom: 0;
+    }
+    .component-container {
+        .content-con {
+            padding:20px;
+            border-radius: 15px;
+        }
+        form {
+            max-width: 310px;
+            margin: 0 auto;
+            .field-row {
+                position: relative;
+                margin-bottom: 20px;
+                .error-msg {
+                    position: absolute;
+                    margin-top: 2px;
+                    width: 100%;
+                }
+            } 
+            label {
+                font-weight: 600;
+            }
+            input[type=text] {
+                width: 100%;
+            }
+            input[type=submit] {
+                max-width: 100px;   
+                border-radius: 5px;
+                padding: 5px;
+            }
+            
+        }
+        
+        @media screen and (max-width: 767px) {
+            .input-text-con {
+                width: calc(100% - 60px);
+            }
+            form {
+                .field-row {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,339 @@
+
+        <div class="content-con padding15"  >
+            <div class="row section-con">
+                <div class="col-md-9 paddright5 mob-paddlr15">
+                    <div class="row section-con mb0">
+                        <div class="col-md-12">
+                            <div class="component-container domestic-component grey-bg">
+                                <div class="title-con">Domestic Routing Instruction Sheet</div>
+                                <div class="content-con padding15">
+                                    <div class="row field-row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_70px">Order ID :</label>
+                                            <div class="input-text-con calc_width_70">
+                                                <app-input-text [type]="'text'"  
+                                                    [value]="order.order_ID"
+                                                    [readonly]="true" >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_75px">Sho Airbill #:</label>
+                                            <div class="input-text-con calc_width_75">
+                                                <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                                                 [value]="order.shoair_Bill_Number" >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_70px">Origin Airport:</label>
+                                            <div class="input-text-con calc_width_70">
+                                                <app-input-text [type]="'text'" [placeHolder]="'SEA'" [readonly]="true"
+                                                [value]="order.origin_Air_Code" >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_70px">Destination Airport:</label>
+                                            <div class="input-text-con calc_width_70">
+                                                <app-input-text [type]="'text'" [placeHolder]="'BCN'" [required]="true" [readonly]="true"
+                                                 [value]="order.dest_Air_Code" >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt10 mob-mb10">
+                            <div class="component-container routing-component grey-bg">
+                                <div class="title-con">Routing</div>
+                                <div class="content-con padding15">
+                                    <div class="row field-row">
+                                        <div class="col-lg-6 col-md-12 md-mb10 mob-mb0">
+                                            <label class="label-nomandatory width_105px">Master AirBill #:</label>
+                                            <div class="input-text-con calc_width_105">
+                                                 <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  
+                                                    [value]="formModel.master_Bill_Number" [maxlength]="20"
+                                                    (modelChange)="modelChangehandler($event,'master_Bill_Number')" [isEditMode]="isEditMode"
+                                                    [jsonField]="'master_Bill_Number'">
+                                                </app-input-text>  
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_65px">Cap #:</label>
+                                            <div class="input-text-con calc_width_65">
+                                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  
+                                                    [value]="formModel.cap_Number" [maxlength]="20"
+                                                    (modelChange)="modelChangehandler($event,'cap_Number')" [isEditMode]="isEditMode"
+                                                    [jsonField]="'cap_Number'">
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_65px">Carrier:</label>
+                                            <div class="input-text-con calc_width_65">
+                                                 <app-dropdown-grid [gridList]="carriersList" [headers]="ddCarriersHeaders"
+                                                    [required]="true"
+                                                    [displayKey]="ddCarriersHeaders[1][1]"
+                                                    (selection)="ddCarrierSelecthandler($event)"
+                                                    [selectedValue]="selectedCarrier"                                             
+                                                    [isEditMode]="isEditMode && isUpdate"
+                                                    [jsonField]="'carrier_Name'"></app-dropdown-grid>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row field-row">
+                                        <div class="col-lg-6 col-md-12 md-mb10 mob-mb0">
+                                            <label class="label-nomandatory width_105px">Commodity Code:</label>
+                                            <div class="input-text-con calc_width_105">
+                                               <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  
+                                                    [value]="formModel.commodity_Code" [maxlength]="20"
+                                                    (modelChange)="modelChangehandler($event,'commodity_Code')" [isEditMode]="isEditMode"
+                                                    [jsonField]="'commodity_Code'">
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_65px">Declared Value:</label>
+                                            <div class="input-text-con calc_width_65">
+                                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                                [readonly]="true"
+                                                [value]="order.declared_Value" >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="label-nomandatory width_65px">AirBill Type:</label>
+                                            <div class="input-text-con calc_width_65">
+                                                <!-- <app-dropdown-grid [gridList]="ddAirBillsList" [headers]="ddAirBillHeaders"
+                                                    [required]="true"
+                                                    [displayKey]="ddAirBillHeaders[1][1]"
+                                                    (selection)="ddAirBillSelecthandler($event)"
+                                                    [selectedValue]="selectedAirBill"                                             
+                                                    [isEditMode]="isEditMode"></app-dropdown-grid>-->
+                                                    <app-input-text [type]="'text'" [placeHolder]="''" [isEditMode]="isEditMode"
+                                                    [value]="formModel.airbill_Type" [maxlength]="20"
+                                                    (modelChange)="modelChangehandler($event,'airbill_Type')"
+                                                    [jsonField]="'airbill_Type'"></app-input-text>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row field-row">
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_105px">Nature and Quantity of
+                                                goods:</label>
+                                            <div class="input-text-con calc_width_105">
+                                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  
+                                                    [value]="formModel.nature_Quantity_Goods" [maxlength]="200"
+                                                    (modelChange)="modelChangehandler($event,'nature_Quantity_Goods')" [isEditMode]="isEditMode"
+                                                    [jsonField]="'nature_Quantity_Goods'">
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_65px">Account #:</label>
+                                            <div class="input-text-con calc_width_65">
+                                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                                [readonly]="true"
+                                                [value]="order.customer_Code"  >
+                                                </app-input-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 paddleft5 mob-paddlr15">
+                    <div class="section-con h100">
+                        <div class="component-container consign-component grey-bg">
+                            <div class="title-con">Consign To</div>
+                            <div class="content-con padding15">
+                                <div class="row field-row ">
+                                    <div class="col-md-12">
+                                        <label class="label-nomandatory width_40px">Name:</label>
+                                        <div class="input-text-con calc_width_40">
+                                            <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                            [readonly]="true"
+                                            [value]="order.consignee_Name"
+                                            >
+                                            </app-input-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="label-nomandatory width_40px">City/St:</label>
+                                        <div class="input-text-con calc_width_40">
+                                            <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                            [readonly]="true"
+                                             [value]="order.consignee_City"  >
+                                            </app-input-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="label-nomandatory width_40px">Phone:</label>
+                                        <div class="input-text-con calc_width_40">
+                                            <app-input-text [type]="'text'" [placeHolder]="''" 
+                                            [readonly]="true"
+                                            [value]="order.consignee_Phone" 
+                                            >
+                                            </app-input-text>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-con">
+                <div class="component-container service-component grey-bg">
+                    <div class="title-con">Service Level</div>
+                    <div class="content-con padding15">
+                        <div class="row field-row">
+                            <div class="col-md-3">
+                                <label class="label-nomandatory width_65px">Service Level:</label>
+                                <div class="input-text-con calc_width_65">
+                                      <app-dropdown-grid [gridList]="ddService_JOEYList" [headers]="ddService_JOEY_Headers"
+                                                    [required]="true"
+                                                    [displayKey]="ddService_JOEY_Headers[0][1]"
+                                                    (selection)="ddServiceJOEYSelecthandler($event)"
+                                                    [selectedValue]="selectedService_JOEY"                                             
+                                                    [isEditMode]="isEditMode"
+                                                    [jsonField]="'service_Level_Shoair'"></app-dropdown-grid>
+
+                                                  <!--   <app-input-text [type]="'text'" [placeHolder]="''" [isEditMode]="isEditMode"
+                                                    [value]="formModel.service_Level_Shoair" [maxlength]="20"
+                                                    (modelChange)="modelChangehandler($event,'service_Level_Shoair')"></app-input-text>-->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="label-nomandatory width_65px">Email Adress:</label>
+                                <div class="input-text-con calc_width_65">
+                                     <app-input-text [type]="'email'" [placeHolder]="''" [isEditMode]="isEditMode"
+                                    [value]="formModel.email_Address"
+                                    (modelChange)="modelChangehandler($event,'email_Address')"
+                                    [jsonField]="'email_Address'"></app-input-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row field-row">
+                            <div class="col-md-3">
+                                <label class="label-nomandatory width_65px">1) Flight #:</label>
+                                <div class="input-text-con calc_width_65">
+                                     <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                      [value]="formModel.flight_Number_Origin"  [isEditMode]="isEditMode"
+                                      [jsonField]="'flight_Number_Origin'"
+                                      (modelChange)="modelChangehandler($event,'flight_Number_Origin')" >
+                                      </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_65px">From:</label>
+                                <div class="input-text-con calc_width_65">
+                                    <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true"
+                                     [value]="order.origin_Air_Code"  [isEditMode]="isEditMode"
+                                      (modelChange)="modelChangehandler($event,'origin_Air_Code')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_65px">To:</label>
+                                <div class="input-text-con calc_width_65">
+                                    <app-input-text [type]="'text'" [placeHolder]="''"
+                                     [required]="true" [readonly]="true" [isEditMode]="isEditMode"
+                                     [jsonField]="'dest_Air_Code'"
+                                     [value]="order.dest_Air_Code" (modelChange)="modelChangehandler($event,'dest_Air_Code')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_70px">Final Destination:</label>
+                                <div class="input-text-con calc_width_70">
+                                    <app-input-text [type]="'text'" [placeHolder]="''" 
+                                     [required]="true" [maxlength]="20" [isEditMode]="isEditMode"
+                                     [jsonField]="'final_Destination'"
+                                     [value]="formModel.final_Destination" (modelChange)="modelChangehandler($event,'final_Destination')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row field-row">
+                            <div class="col-md-3">
+                                <label class="label-nomandatory width_65px">2) Flight #:</label>
+                                <div class="input-text-con calc_width_65">
+                                   <app-input-text [type]="'text'" [placeHolder]="''" 
+                                     [value]="formModel.flight_Number_Final"  [maxlength]="20" [isEditMode]="isEditMode"
+                                     [jsonField]="'flight_Number_Final'"
+                                      (modelChange)="modelChangehandler($event,'flight_Number_Final')" >
+                                      </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_65px">From:</label>
+                                <div class="input-text-con calc_width_65">
+                                    <app-input-text [type]="'text'" [placeHolder]="''"  [maxlength]="3" [isEditMode]="isEditMode"
+                                    [jsonField]="'origin_Air_Code_Final'"
+                                     [value]="formModel.origin_Air_Code_Final"  (modelChange)="modelChangehandler($event,'origin_Air_Code_Final')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_65px">To:</label>
+                                <div class="input-text-con calc_width_65">
+                                      <app-input-text [type]="'text'" [placeHolder]="''"  [maxlength]="3" [isEditMode]="isEditMode"
+                                      [jsonField]="'dest_Air_Code_Final'"
+                                     [value]="formModel.dest_Air_Code_Final"  (modelChange)="modelChangehandler($event,'dest_Air_Code_Final')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="label-nomandatory width_70px">Drop Time:</label>
+                                <div class="input-text-con calc_width_70">
+                                      <app-input-text [type]="'text'" [placeHolder]="''"  [maxlength]="4" [isEditMode]="isEditMode" 
+                                      [jsonField]="'drop_Time'"
+                                     [value]="formModel.drop_Time" [valueType]="'time'"  (modelChange)="modelChangehandler($event,'drop_Time')" >
+                                    </app-input-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row field-row">
+                            <div class="col-md-9">
+                                <label class="label-nomandatory width_65px">Special Instruction:</label>
+                                <div class="input-text-con calc_width_65">
+                                  <app-textarea [height]="" 
+                                        [class]="(!spclCommentValid) ? 'validation_error' : ''"
+                                        [value]="formModel.special_Instruction"
+                                        [maxlength]="8000" 
+                                        (modelChange)="instructionChangehandler($event)"
+                                        (textInputEvent)= "changeSpecialinstructions($event)"
+                                        [isEditMode]="isEditMode"
+                                        [jsonField]="'special_Instruction'"></app-textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-con">
+                <div class="btn-group-link">
+                    <div class="d-flex flex-column flex-md-row justify-content-center">
+                        <div class="mr-auto"> <button class="btn btn-primary" (click)="closeBtnClickhandler($event)"   >Close</button></div>
+                        <div class="width-auto">
+                            <button class="btn btn-primary">Review Routing Sheet</button>
+                            <button class="btn btn-primary">Email Alert</button>
+                            <button class="btn btn-primary" [disabled]="disableNewBtn"  (click)="newRoutingBtnClickhandler($event)">New Routing Alert</button>
+                             <button class="btn btn-primary" [disabled]="isEditMode"   (click)="editBtnClickhandler($event)" >Edit</button>
+                        </div>
+                        <div class="ml-auto">
+                             <button class="btn btn-primary" *ngIf="isUpdate" (click)="saveBtnClickhandler($event)">Save</button>
+                             <button class="btn btn-primary" *ngIf="!isUpdate" [disabled]="!isEditMode" (click)="updateBtnClickhandler($event)">Update</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>

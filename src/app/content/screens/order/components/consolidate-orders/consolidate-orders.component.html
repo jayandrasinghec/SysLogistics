@@ -1,0 +1,147 @@
+<div class="page-container sp-component-container consolidate-order mt15">
+    <div class="sp-component-container-inner auto-height">
+        <h4 class="title">Consolidate Orders </h4>
+        <div class="top-content">
+            <div class="row">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="row field-row align-items-center mob-mb10">
+                        <div class="col-lg-5 col-md-6 mob-mb10">
+                            <label class="label-nomandatory width_75px">Order ID:</label>
+                            <div class="input-text-con calc_width_75">
+                              <app-input-text [type]="'text'"
+                              [placeHolder]="'Order ID'"
+                              [required]="true"
+                              [value]="orderID"
+                              (modelChange)="orderIdChangehandler($event)"
+                              [isEditMode]="disableOrder"
+                              [jsonField]="'order_ID'"
+                              ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="radio-btn-group">
+                                <div class="radiobtn-option-con"><label class="radio-btn-option">
+                                   <!-- <input name="radio" type="radio" checked="checked">-->
+                                    <input  name="radio" type="radio" [checked]="(!isMasterOrderFound && !isConsolidated )?'checked':''"
+                                    [value]="MASTER_ORDER_TYPE"  [(ngModel)]="orderType"
+                                    [disabled]="isMasterOrderFound || isConsolidated || isEditmode"
+
+                                    >
+                                    <span class="checkmark"></span> Master Order ID </label>
+                                </div>
+                                <div class="radiobtn-option-con"><label class="radio-btn-option">
+                                    <!--<input name="radio" type="radio">-->
+                                    <input  name="radio" type="radio"
+                                    [checked]="(isMasterOrderFound && !isConsolidated)?'checked':''"
+                                    [value]="CONSOLIDATED_ORDER_TYPE"  [(ngModel)]="orderType"
+                                    [disabled]="isConsolidated || isEditmode"
+                                    >
+                                    <span class="checkmark"></span> Consolidated Order ID  </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row field-row mb30 mob-mb20">
+                <div class="col-xl-6 col-lg-8 d-flex flex-column flex-md-row align-items-start mb10 mob-mb0">
+                    <label class="label-nomandatory width_75px">Notes:</label>
+                    <div class="input-text-con calc_width_75 mob-mb10">
+                 <!--     <textarea #ipElement
+                      [style.height]="autoHeight" autocomplete="nope"
+                      [class.error]="!txtAreaValid"
+                      [readonly]="false" [(ngModel)]="strNotes"
+                      #inputToFocus
+                      (change)="notesChangehandler($event)"
+                      (focusout)="focusOutFunction($event)" ></textarea> -->
+                       <app-textarea [height]="" 
+                           [class]="!txtAreaValid ? 'error' : ''"
+                           [value]="strNotes"
+                           (modelChange)="notesChangehandler($event)"                            
+                           [isEditMode]="isEditmode"
+                           [jsonField]="'notes'"></app-textarea>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-4">
+                    <button class="btn btn-primary float-right" type="button" (click)="addOrder($event)" *ngIf="isEditmode&& !showupdateBtn" [disabled]="isConsolidated"  >Add</button>
+                    <button class="btn btn-primary float-right" type="button" (click)="updateOrder($event)"  *ngIf="isEditmode && showupdateBtn" >Update</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="table-wrapper">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Edit</th>
+                        <th>Consol. Order ID.</th>
+                        <th>Orig Air Code</th>
+                        <th>Dest Air Code</th>
+                        <th>Pieces </th>
+                        <th>Dim Wt (LBS).</th>
+                        <th>Actual Wt (LBS).</th>
+                        <th>Description </th>
+                        <th>Notes </th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of consolidationOrders | ntsListfilter;let i= index"
+                        [class.master]="isMasterRow(item)"
+                        [class.consolidate]="!isMasterRow(item)"
+                        >
+                        <td class="text-center"> <img src="../../../../assets/images/icon/edit.png" width="15" alt="" (click)="edit(item,i)" /> </td>
+                        <td>{{item.consolidated_Order_ID  }}</td>
+                        <td>{{item.origin_Air_Code   }}</td>
+                        <td>{{item.dest_Air_Code   }}</td>
+                        <td>{{item.pieces   }}</td>
+                        <td>{{item.weight_Dimensional_LB   }}</td>
+                        <td>{{item.weight_Actual_LB   }}</td>
+                        <td>{{item.pieces_Description   }}</td>
+                        <td>{{item.notes   }}</td>
+
+                        <td class="text-center"> <img src="../../../../assets/images/icon/delete.png"  width="15" alt=""  (click)="deleteRow(item,i)"/> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bottom-content">
+            <div class="item-con">
+                <label class="label-nomandatory width_75px">Total Orders:</label>
+                <div class="ip-con">
+                    <input type="text" placeholder="" [value]="totalOrders"  [readonly]="true" >
+                </div>
+            </div>
+            <div class="item-con">
+                <label class="label-nomandatory ">Total pieces:</label>
+                <div class="ip-con">
+                    <input type="text" placeholder="" [value]="totalPieces" [readonly]="true">
+                </div>
+            </div>
+            <div class="item-con">
+                <label class="label-nomandatory ">Total Dim Weight:</label>
+                <div class="ip-con">
+                    <input type="text" placeholder="" [value]="totalDimWeight" [readonly]="true">
+                </div>
+            </div>
+            <div class="item-con">
+                <label class="label-nomandatory ">Total Actual Weight:</label>
+                <div class="ip-con">
+                    <input type="text" placeholder="" [value]="totalActulalWeight" [readonly]="true">
+                </div>
+            </div>
+        </div>
+        <div class="nav-con">
+            <div class="d-flex flex-row">
+                <button class="btn btn-primary mr-auto" type="button" (click)="closeBtnClickHandler($event)">Close</button>
+                <div class="ml-auto">
+                    <button class="btn btn-primary btn-export" type="button" (click)="exportBtnClickHandler($event)"> Export To Excel</button>
+                    <button class="btn btn-primary" type="button" (click)="submit($event)"> Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

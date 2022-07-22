@@ -1,0 +1,87 @@
+  .title-con{
+      padding: 8px 10px !important;
+  }
+  
+  .radio-btn-group{
+        position: relative;
+        .navbtns-con{
+            width: fit-content;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: -5px;
+        }
+    }
+.notValid{
+        border: 1px solid red !important;
+    }
+ 
+ .content-con {
+            padding: 15px 30px 15px 20px; 
+            textarea {
+                padding: 5px;
+                height: 90px;
+                font-size: 14px;
+                &:focus {
+                    border: none!important;
+                }
+            }
+            .note-textarea {
+                min-height: 95px;
+                background: #FFF;            
+                border: 1px solid #8f9bb3;
+                padding: 5px 0 5px 5px;
+                &.viewmode {
+                    background: #C4C4C4;
+                    textarea {
+                        background: #C4C4C4;
+                    }
+                }
+                .ps-content {
+                    padding-right: 15px;
+                }
+                .ps__rail-y {
+                    opacity: 1;
+                }
+                textarea {
+                    height: 21px;
+                    padding: 0;
+                    border: none;
+                    overflow: hidden;
+                }
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        list-style: none;
+                        margin-bottom: 7px;
+                        line-height: 18px;
+                        @media screen and (min-width: 1400px ) {
+                            margin-bottom: 10px;
+                        }
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        span {
+                            &:first-child {
+                                padding-right: 10px;
+                            }
+                            &.desc {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+}
+ 
+
+@media screen and (max-width: 1199px) {
+    .table-wrapper {
+        overflow-x: auto;
+        table {
+            width: 1200px;
+        }
+    }
+   
+}

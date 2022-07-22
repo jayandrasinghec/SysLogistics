@@ -1,0 +1,45 @@
+.proof-delivery-container {
+    .delivery-thumb {
+        .img-thumbnail {
+            max-width: 500px;
+            margin: 0 15px;
+            img {
+                width: 100%;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            .checkbox-group {
+                margin: 15px;
+                .checkbox {
+                    margin-bottom: 0;
+                }
+            }
+        }    
+    }
+    .col-md-4 {
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 1024px) {
+        .width_115px {
+            width: 80px;
+        }
+        .calc_width_115 {
+            width: calc(100% - 80px);
+        }
+        .width_60px {
+            width: 65px;
+        }
+        .calc_width_60 {
+            width: calc(100% - 65px);
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .col-md-4 {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+

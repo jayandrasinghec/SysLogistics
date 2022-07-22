@@ -1,0 +1,32 @@
+
+.billing-tab {
+  .field-row {
+    margin-bottom: 7px;
+    @media screen and (min-width: 1400px ) {
+      margin-bottom: 10px;
+    }
+    @media screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+  
+  [class*="col-md-"], [class*="col-lg-"] {
+    padding: 0 10px;
+  }
+  .row {
+    margin: 0 -10px;
+    &.section-con {
+      margin-bottom: 10px;
+    }
+    &.field-row {
+      margin-bottom: 7px;
+      @media screen and (min-width: 1400px ) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.status-bar-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

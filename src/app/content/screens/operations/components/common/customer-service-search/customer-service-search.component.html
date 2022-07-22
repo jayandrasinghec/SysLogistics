@@ -1,0 +1,327 @@
+<div class="page-container customer-service">
+    <div class="component-container mb10">
+        <div class="title-con d-flex flex-column flex-xl-row">
+            <div class="col-xl-5"> Enter criteria then click on "Search" button</div>
+            <div class="col-xl-7">
+                <div class="radio-btn-group nomargin d-flex flex-column flex-md-row align-items-md-center justify-content-xl-end">
+                    <label class="label-nomandatory text-left f14"><strong>Filter Criteria:</strong></label>
+                    <div class="input-text-con">
+                        <div class="radiobtn-option-con " *ngFor="let item of divisions">
+                            <label class="radio-btn-option">
+                                <input name="radio" type="radio" 
+                                [value]="item.code" 
+                                (click)="handleRadioClick(item.code)"
+                                [disabled]="!is_Edit_Code">
+                                <span class="checkmark"></span>
+                                {{item.description}}</label>
+                        </div>                   
+                    </div>  
+                </div>
+            </div> 
+        </div>
+        <div class="content-con padding15">
+            <div class="row field-row">
+                <div class="col-md-12 col-xl-4">
+                    <div class="row field-row mb10">
+                        <div class="col-md-6 paddright0">
+                            <label class="label-nomandatory width_110px">Order ID:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"
+                                [value]="formModel.order_ID" 
+                                (modelChange)="changeModel($event,'order_ID')"
+                                [isEditMode]="isEditMode"
+                                [jsonField]="'order_ID'"
+                                ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_70px">Po Number:</label>
+                            <div class="input-text-con calc_width_70">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  
+                                [value]="formModel.po_Number" 
+                                (modelChange)="changeModel($event,'po_Number')" 
+                                [isEditMode]="isEditMode" 
+                                [jsonField]="'po_Number'"></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Customer Name:</label>
+                            <div class="input-text-con calc_width_110">
+                                 <app-autopopulate-input-text [displayKey]="billToNameHeaders[1][1]" [headers]="billToNameHeaders"
+                                    [gridList]="ddBillToOptions" (serchText)="serchTextChangehandler($event)" [class]="autoComplete"
+                                    [value]="formModel.billTo_Name"
+                                    (selection)="ddBillToChangeHandler($event)" [required]="true" [placeHolder]="''" [isSearchable]="true"
+                                    [tabindex]="1" id="billto" [setFocus]="true" 
+                                    [isEditMode]="isEditMode" 
+                                    [jsonField]="'billTo_Name'" 
+                                    [showAlertBefore]="isEditUrl">
+                                </app-autopopulate-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_110px">Origin Airport:</label>
+                            <div class="input-text-con calc_width_110">
+                                  <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" 
+                                  [value]="formModel.origin_Air_Code" 
+                                  (modelChange)="changeModel($event,'origin_Air_Code')" 
+                                  [isEditMode]="isEditMode" 
+                                  [jsonField]="'origin_Air_Code'"
+                                  ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_110px">Destination Airport:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" 
+                                [value]="formModel.dest_Air_Code" 
+                                (modelChange)="changeModel($event,'dest_Air_Code')" 
+                                [isEditMode]="isEditMode" 
+                                [jsonField]="'dest_Air_Code'"
+                                ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Location:</label>
+                            <div class="input-text-con calc_width_110">
+                                 <app-dropdown-grid [gridList]="companyLocations" [headers]="companyLocationsheaders"
+                                    [displayKey]="companyLocationsheaders[1][1]"
+                                    (selection)="cmpLocationSelecthandler($event,companyLocationsheaders[0][1])"
+                                    [selectedValue]="companyLocation" [reset]="ddReset  && !isEditUrl" [tabindex]="6" 
+                                    [isEditMode]="isEditMode" 
+                                    [jsonField]="'location_ID'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Origin Show:</label>
+                            <div class="input-text-con calc_width_110">
+                               <!-- <app-dropdown [options]="shows"></app-dropdown>-->
+                                <app-dropdown-grid [gridList]="shows" [headers]="ddShows_Headers"
+                                                    [required]="true"
+                                                    [displayKey]="ddShows_Headers[1][1]"
+                                                    (selection)="ddOriginShowSelecthandler($event)"
+                                                    [selectedValue]="selectedOrigShow"                                             
+                                                    [isEditMode]="isEditMode"
+                                                    [jsonField]="'origin_Show'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Booking Agent:</label>
+                            <div class="input-text-con calc_width_110">
+                              <app-dropdown-grid [gridList]="bookingAgents" [headers]="bookingAgentHeaders"
+                                [displayKey]="bookingAgentHeaders[1][1]"
+                                (selection)="bookingagentSelecthandler($event)"
+                                [selectedValue]="bookingAgent" [reset]="ddReset" [tabindex]="3" [isEditMode]="isEditMode"
+                                [jsonField]="'booking_Agent_ID'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-7">
+                            <label class="label-nomandatory width_110px">Origin Load:</label>
+                           
+                                
+                                   <div class="input-text-con calc_width_110 datepicker">
+                                        <input matInput [matDatepicker]="picker1" [min]="minDate" (dateChange)="dateChangehandler($event,'load_Date_From')"
+                                            placeholder="" [class.notValid]="!isDelDateValid" [readonly]="!is_Edit_loadDateFrom" [value]="formModel.load_Date_From"
+                                            (keyup.enter)="isEditMode && picker1.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode ? picker1 : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                   </div>
+                             
+                        </div>
+                        <div class="col-md-5">
+                                   <label class="label-nomandatory width_30px">To:</label> 
+                                   <div class="input-text-con calc_width_30 datepicker">
+                                        <input matInput [matDatepicker]="picker2" [min]="minDate" (dateChange)="dateChangehandler($event,'load_Date_To')"
+                                            placeholder="" [class.notValid]="!isDelDateValid" [readonly]="!is_Edit_loadDateTo" [value]="formModel.load_Date_To"
+                                            (keyup.enter)="isEditMode && picker2.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode ? picker2 : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                  </div>
+                             
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-7">
+                            <label class="label-nomandatory width_110px">Master Bill #:</label>
+                            <div class="input-text-con calc_width_110">
+                                  <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                  [value]="formModel.master_Bill_Number" 
+                                  (modelChange)="changeModel($event,'master_Bill_Number')" 
+                                  [isEditMode]="isEditMode"
+                                  [jsonField]="'master_Bill_Number'"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="label-nomandatory width_60px">Sho-Air #:</label>
+                            <div class="input-text-con calc_width_60">
+                                 <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                 [value]="formModel.shoair_Bill_Number" 
+                                 (modelChange)="changeModel($event,'shoair_Bill_Number')" [isEditMode]="isEditMode"
+                                 [jsonField]="'shoair_Bill_Number'"
+                                 ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Destination Show:</label>
+                            <div class="input-text-con calc_width_110">
+                                 <app-dropdown-grid [gridList]="shows" [headers]="ddShows_Headers"
+                                                    [required]="true"
+                                                    [displayKey]="ddShows_Headers[1][1]"
+                                                    (selection)="ddDestinationShowSelecthandler($event)"
+                                                    [selectedValue]="selectedDestShow"                                             
+                                                    [isEditMode]="isEditMode"
+                                                    [jsonField]="'dest_Show'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Rebate Agent:</label>
+                            <div class="input-text-con calc_width_110">
+                                  <app-dropdown-grid [gridList]="rebateAgents" [headers]="rebateAgentsHeaders"
+                                    [displayKey]="rebateAgentsHeaders[1][1]"
+                                    (selection)="rebateAgentSelecthandler($event )"
+                                    [selectedValue]="rebateAgent"
+                                    [reset]="ddReset && !isEditUrl" [tabindex]="4" [isEditMode]="isEditMode" 
+                                    [jsonField]="'rebate_Agent_ID'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-7">
+                            <label class="label-nomandatory width_110px">Destination Load:</label>
+                           
+                                 
+                                   <div class="input-text-con calc_width_110 datepicker">
+                                        <input matInput [matDatepicker]="picker3" [min]="minDate" (dateChange)="dateChangehandler($event,'delivery_Date_From')"
+                                            placeholder="" [class.notValid]="!isDelDateValid" [readonly]="!is_Edit_deliveryDateFrom" [value]="formModel.delivery_Date_From"
+                                            (keyup.enter)="isEditMode && picker3.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode ? picker3 : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker3></mat-datepicker>
+                                   </div>
+                            
+                        </div>
+                        <div class="col-md-5">
+                            <label class="label-nomandatory width_30px">To:</label>
+                          
+                                  
+                                   <div class="input-text-con calc_width_30 datepicker">
+                                        <input matInput [matDatepicker]="picker4" [min]="minDate" (dateChange)="dateChangehandler($event,'delivery_Date_To')"
+                                            placeholder="" [class.notValid]="!isDelDateValid" [readonly]="!is_Edit_deliveryDateTo" [value]="formModel.delivery_Date_To"
+                                            (keyup.enter)="isEditMode && picker4.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode ? picker4 : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker4></mat-datepicker>
+                                   </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row field-row mb10">
+                        <div class="col-md-7">
+                            <label class="label-nomandatory width_110px">Carrier Code:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                 [value]="formModel.carrier_Code" 
+                                 (modelChange)="changeModel($event,'carrier_Code')" [isEditMode]="isEditMode" 
+                                 [jsonField]="'carrier_Code'"
+                                ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="label-nomandatory width_110px">Authorization #:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+                                 [value]="formModel.authorization" 
+                                 (modelChange)="changeModel($event,'authorization')" [isEditMode]="isEditMode"
+                                 [jsonField]="'authorization'"
+                                ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-service-table table-wrapper">
+                <table class="table text-center table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Division</th>
+                            <th>Status</th>
+                            <th>PO Number</th>
+                            <th>Customer Number</th>
+                            <th>Origin Airport</th>
+                            <th>Dest Airport</th>
+                            <th>Origin Load Date</th>
+                            <th>Dest Delivery Date</th>
+                            <th>Master Air Bill#</th>
+                        </tr>
+                    </thead>
+                      <perfect-scrollbar style="max-height: 300px;" [scrollIndicators]>
+                    <tbody>
+                        <tr *ngFor="let item of gridList;let i= index;" [ngStyle]="{'background-color':getBgColor(item)}">
+                            <td><a class="order-nav" (click)="navToOperation(item.order_ID)">{{item.order_ID}}</a></td>
+                            <td>{{item.division_Code}}</td>
+                            <td>{{item.no_Move_Description}}</td>
+                            <td>{{item.po_Number}}</td>
+                            <td>{{item.billTo_Name}}</td>
+                            <td>{{item.origin_Air_Code}}</td>
+                            <td>{{item.dest_Air_Code}}</td>
+                            <td>{{item.load_Date}}</td>
+                            <td>{{item.delivery_Date}}</td>
+                            <td>{{item.master_Bill_Number}}</td>
+                        </tr>
+                        
+                    </tbody>
+                      </perfect-scrollbar>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="component-container  mb10">
+        <div class="title-con"> Status Color Legend</div>
+        <div class="content-con padding15">
+            <div class="d-flex button-checkbox-group btn-group-link flex-wrap width-auto">
+                <button class="btn-primary btn5">Bill Only</button>
+                <button class="btn-primary btn5">No Billing</button>
+                <button class="btn-primary btn5">No Move</button>
+                <button class="btn-primary btn1">Cancel</button>
+                <button class="btn-primary btn4">Hand Carried Carnet</button>
+                <button class="btn-primary btn6">Re-Inserted</button>
+                <button class="btn-primary btn3">Single Point of Content</button>
+                <button class="btn-primary btn2">Duties and Taxes</button>
+                <button class="btn-primary btn7">DHL</button>
+                <button class="btn-primary btn8">UPS</button>
+                <button class="btn-primary btn9">Fed-Ex</button>
+            </div>
+        </div>
+    </div>
+    <div class="nav-con">
+        <div class="btn-group-link">
+            <div class="d-flex flex-column flex-md-row">            
+                <button class="btn-primary btn-export" (click)="exportCickHandler($event)" style="width: 130px;">Export Excel</button>
+                <button class="btn btn-primary" (click)="searchCickHandler($event)">Search</button>
+                <button class="btn btn-primary" (click)="clearCickHandler($event)">Clear All</button>
+                <!--<button class="btn btn-primary">Select</button>-->
+                <div class="ml-auto">
+                    <button class="btn-primary border-radius-5" (click)="closeCickHandler($event)">Close</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>

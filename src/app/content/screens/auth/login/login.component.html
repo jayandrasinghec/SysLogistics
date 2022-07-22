@@ -1,0 +1,41 @@
+
+<div class="page-container login-page">
+    <div class="section-con">
+        <div class="component-container">
+            <div class="title-con">Sign in</div>
+            <div class="content-con">
+                <form   #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" >
+                    <div class="row field-row">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_60px">User ID:</label>
+                            <div class="input-text-con calc_width_60">
+                                <input type="text" id="name" required [(ngModel)]="model.username" name="name" #name="ngModel" autofocus>
+                                <div [hidden]="name.valid || name.pristine" class="error-msg">
+                                   User ID is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_60px">Password:</label>
+                            <div class="input-text-con calc_width_60">
+                                <input type="password" id="password" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                                <div [hidden]="password.valid || password.pristine" class="error-msg">
+                                    Password is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb0">
+                        <div class="col-md-12  text-center">           
+                            <div *ngIf="showSpinner"><i class="fa fa-circle-o-notch fa-spin" [ngStyle]="{'font-size': '25px'}"></i></div>                          
+                            <input *ngIf="!showSpinner" type="submit" class="btn-primary" value="Sign in"  [disabled]="!LoginForm.form.valid" >
+                            <div *ngIf="showValidationError" class="error-msg text-center">User ID and password do not match.</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

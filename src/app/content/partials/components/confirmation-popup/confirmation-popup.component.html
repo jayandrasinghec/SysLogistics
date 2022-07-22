@@ -1,0 +1,17 @@
+<div class="conformation-popup">
+    <div class="component-container">
+        <div class="title-con" [innerHtml]='data.title'>
+        </div>
+        <div class="content-con">
+            <p [innerHtml]='data.message' tabindex="-1"></p>
+
+            <div class="btn-group">
+                <button *ngIf="data.type=='popup'" class="btn-primary cancel-btn" tabindex="-1"
+                    [disabled]="data.disableCancel"
+                    (click)="cancelClickHandle($event)">{{data.cancelButtonName}}</button>
+                <button #ipElement class="btn-primary cancel-btn" [disabled]="data.disableOkBtn" tabindex="1"
+                    (keyup.enter)="okClickHandle($event)" (click)="okClickHandle($event)">{{data.okButtonName}}</button>
+            </div>
+        </div>
+    </div>
+</div>

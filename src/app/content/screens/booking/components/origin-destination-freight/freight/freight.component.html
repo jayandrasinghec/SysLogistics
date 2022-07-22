@@ -1,0 +1,139 @@
+<div class="component-container">
+  <div class="title-con">
+    Freight
+  </div>
+  <div class="content-con">
+    <div class="row field-row">
+      <div class="col-lg-2 col-md-3">
+        <label class="label-mandatory width_85px">Pieces<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85">
+          <app-input-text [type]="'number'" [placeHolder]="''" [required]="true" [isEditMode]="isEditMode"
+          [value]="freightModel.pieces"
+          (modelChange)="piecesChangehandler($event)"
+          [jsonField]="'pieces'"
+          >
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <label class="label-mandatory width_115px">Actual Weight(LBS)<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_115">
+          <app-input-text [type]="'number'" [placeHolder]="''" [required]="true" [isEditMode]="isEditMode"
+          [value]="freightModel.weight_Actual_LB"
+          (modelChange)="actualaWeightLBSChangehandler($event)" (focusOutEvent)="focusOutHandler($event)"
+          [jsonField]="'weight_Actual_LB'">
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <label class="label-nomandatory width_105px">Actual Weight(KG):</label>
+        <div class="input-text-con calc_width_105">
+          <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [tabindex]="-1"
+          [value]="freightModel.weight_Actual_KG"
+          (modelChange)="actualaWeightKGChangehandler($event)"
+          >
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <label class="label-mandatory width_115px">Corporate Account<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_115">
+          <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true" [tabindex]="-1"
+          [value]="freightModel.customer_Code"
+          (modelChange)="corporateAccoutChangehandler($event)"
+          >
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 servicelevel-box">
+        <label class="label-mandatory width_85px">Service Level<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_85 row mlr0">
+          <div class="col-9 paddleft0 aw-dropdown rs-dropdown mls-dropdown">
+            <!--  <app-dropdown [options]="ddOptions" [required]="true" (selection)="ddServiceLevelChangeHandler($event)"></app-dropdown>-->
+            <app-dropdown-grid [gridList]="ddServiceLevels" [headers]="ddServiceLevelsHeaders"
+            [required]="true"
+            [displayKey]="ddServiceLevelsHeaders[2][1]"
+            (selection)="ddServiceLevelSelecthandler($event,ddServiceLevelsHeaders[1][1])"
+            [selectedValue]="serviceLevelValue"
+            [reset]="ddReset" [isEditMode]="isEditMode"
+            [jsonField]="'service_Level_Code'"></app-dropdown-grid>
+
+          </div>
+          <div class="col-3 paddright0 paddleft5 mb0">
+              <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [tabindex]="-1"
+              [value]="freightModel.service_Level_Code"
+              (modelChange)="seviceLevelChangehandler($event)"
+              >
+                </app-input-text>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 ml-auto mb0">
+        <label class="label-mandatory width_95px">Declared Value<span class="asterisk">*</span>:</label>
+        <div class="input-text-con calc_width_95">
+        <!--  <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"
+          [value]="decl_value"
+          (modelChange)="declaredValueChangehandler($event)"
+          >-->
+          <app-input-dollar 
+          [value]="freightModel.declared_Value"
+          [required]="true" [isEditMode]="isEditMode"
+          (modelChange)="declaredValueChangehandler($event)" [placeHolder]="''"
+          [jsonField]="'declared_Value'"></app-input-dollar>
+
+        </div>
+      </div>
+    </div>
+    <div class="row field-row dim-lebel">
+      <div class="col-lg-2 col-md-3 offset-md-2">
+        <label class="label-nomandatory width_115px">DIM Weight(LBS):</label>
+        <div class="input-text-con calc_width_115">
+          <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [tabindex]="-1"
+          [value]="freightModel.weight_Dimensional_LB"
+          (modelChange)="DIMWeightLBSChangehandler($event)"
+          >
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <label class="label-nomandatory width_105px">DIM Weight(KG):</label>
+        <div class="input-text-con calc_width_105">
+          <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [tabindex]="-1"
+          [value]="freightModel.weight_Dimensional_KG"
+          (modelChange)="DIMWeightKGChangehandler($event)"
+          >
+          </app-input-text>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        
+      </div>
+    
+    </div>
+    <div class="row field-row description-content align-items-center">
+        <div class="col-md-11">
+            <label class="label-mandatory width_85px noteTxt">Description<span class="asterisk">*</span>:</label>
+            <div class="input-text-con notes-con calc_width_85">
+              <!-- <app-input-text [type]="'text'" [placeHolder]="'sfsdfd'" [required]="true" [submitted]=isSubmit>
+              </app-input-text> -->
+             <!-- <textarea placeholder="" [(ngModel)]="freightModel.pieces_Description"
+                       [class.error]="!txtAreaValid"
+                       [value]="freightModel.pieces_Description"
+                       [readonly]="!isEditable('pieces_Description')"
+                       (input)="FreighDescriptionChange($event)"
+                       ></textarea>-->
+               <app-textarea [height]="" 
+                           [class]="!txtAreaValid ? 'error' : ''"
+                           [value]="freightModel.pieces_Description"
+                           (modelChange)="FreighDescriptionChange($event)"                            
+                           [isEditMode]="isEditMode"
+                           [jsonField]="'pieces_Description'"></app-textarea>
+            </div>
+        </div>
+        <div class="col-md-1 dimensionsBtn">
+            <button class="btn btn-primary float-right mb7" [disabled]="!isEditMode?'disabled':''" (click)="gotoCalculateDiamension($event)">Calculate Dimensions</button>
+            <button class="btn btn-primary float-right" (click)="gotoViewDimension($event)">View Dimensions</button>
+        </div>
+    </div>
+  </div>
+</div>

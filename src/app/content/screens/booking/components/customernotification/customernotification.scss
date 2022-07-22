@@ -1,0 +1,92 @@
+
+.divider--verticle-left {
+    border-left: 1px solid #000;
+}
+.email-notification{
+    padding-left: 10px;
+    margin-top: 20px;
+}
+.padding_let_60{
+    padding-left: 60px !important;
+}
+.padding_let_35{
+    padding-left: 35px !important;
+}
+.customer-page {    
+    .component-container {
+        margin-bottom: 10px;
+        .content-con {
+            padding: 15px 30px; 
+            @media screen and (max-width: 991px) {
+                padding: 15px; 
+            }
+            .radio-btn-group {               
+                .radiobtn-option-con {
+                    display: block;
+                    margin-bottom: 10px;
+                    margin-left: 0px !important;
+                }
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            height: auto;   
+        }
+    }
+    .left-content{
+        .component-container {
+            margin-bottom: 0;
+            min-height: 500px;
+        }
+        .radio-btn-group {
+            padding-left: 50px;
+            
+        }
+        .checkbox {
+            margin-left: 60px;
+        }        
+    }
+    .right-content {
+        
+        .component-container {
+            min-height: 150px;
+            height: calc(33% - 5px);
+            .content-con {
+                padding-top: 35px;
+            }
+            
+        }
+    }
+    .customer-order-status {
+        margin-top: 20px;
+        .divider--verticle-left {
+            padding-left: 35px;
+        }
+    }
+    @media screen and (max-width: 991px){
+        margin-bottom: 10px;        
+    }
+    @media screen and (max-width: 767px){
+        .left-content {
+            .component-container {
+                margin-bottom: 10px;
+            }
+            .radio-btn-group { 
+                padding-left: 0;
+                .radiobtn-option-con {
+                    margin: 0 0 10px;
+                }
+            }
+            .checkbox {
+                margin-left: 0;
+            }
+        }
+        .customer-order-status {
+            .divider--verticle-left {
+                margin-top: -20px;
+                padding-left: 10px;
+                border-left: 0;
+            }
+        }
+       
+    }
+}

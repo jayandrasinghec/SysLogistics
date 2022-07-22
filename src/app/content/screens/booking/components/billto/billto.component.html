@@ -1,0 +1,565 @@
+<div class="tab-item-container page-container bill-container nopadding">
+  <div class="row section-con">
+    <div class="col-lg-6 paddright5">
+      <div class="component-container">
+        <div class="title-con">
+          General Information
+        </div>
+        <div class="content-con">
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Booking Agent:</label>
+              <div class="input-text-con calc_width_65 aw-dropdown ls-dropdown">
+                <!-- <app-dropdown [options]="ddBookingAgents"   ></app-dropdown>-->
+                <app-dropdown-grid [gridList]="bookingAgents" [headers]="bookingAgentHeaders"
+                  [displayKey]="bookingAgentHeaders[1][1]"
+                  (selection)="bookingagentSelecthandler($event,bookingAgentHeaders[0][1])"
+                  [selectedValue]="bookingAgent" [reset]="ddReset" [tabindex]="3" [isEditMode]="isEditMode"
+                  [jsonField]="'booking_Agent_ID'"></app-dropdown-grid>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Rebate Agent:</label>
+              <div class="input-text-con calc_width_65 aw-dropdown rs-dropdown">
+                <app-dropdown-grid [gridList]="rebateAgents" [headers]="rebateAgentsHeaders"
+                  [displayKey]="rebateAgentsHeaders[1][1]"
+                  (selection)="rebateAgentSelecthandler($event,rebateAgentsHeaders[0][1])" [selectedValue]="rebateAgent"
+                  [reset]="ddReset && !isEditUrl" [tabindex]="4" [isEditMode]="isEditMode" 
+                  [jsonField]="'rebate_Agent_ID'"></app-dropdown-grid>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Booking Method:</label>
+              <div class="input-text-con calc_width_65 aw-dropdown ls-dropdown">
+                <!-- <app-dropdown [options]="ddBookingMethods" ></app-dropdown>-->
+                <app-dropdown-grid [gridList]="bookingMethods" [headers]="bookingMethodsheaders"
+                  [displayKey]="bookingMethodsheaders[1][1]"
+                  (selection)="bookmethodeSelecthandler($event,bookingMethodsheaders[0][1])"
+                  [selectedValue]="bookingMethod" [reset]="ddReset  && !isEditUrl" [tabindex]="5" [isEditMode]="isEditMode"
+                  [jsonField]="'booking_Method_ID'"></app-dropdown-grid>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Location:</label>
+              <div class="input-text-con calc_width_65 aw-dropdown rs-dropdown">
+                <!-- <app-dropdown [options]="ddLocations" ></app-dropdown>-->
+                <app-dropdown-grid [gridList]="companyLocations" [headers]="companyLocationsheaders"
+                  [displayKey]="companyLocationsheaders[1][1]"
+                  (selection)="cmpLocationSelecthandler($event,companyLocationsheaders[0][1])"
+                  [selectedValue]="companyLocation" [reset]="ddReset  && !isEditUrl" [tabindex]="6" [isEditMode]="isEditMode"
+                  [jsonField]="'origin_Agent_ID'"></app-dropdown-grid>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 paddleft5">
+      <div class="component-container">
+        <div class="title-con">
+          Account Information
+        </div>
+        <div class="content-con">
+          <div class="row field-row">
+            <div class="col-md-4 col-xl-3 m-pr0">
+              <label class="label-nomandatory width_65px ">Customer Account:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.customer_Code"
+                  (modelChange)="changeModel($event,'customer_Code')" [placeHolder]="''" [readonly]="true" tabindex="-1"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-3 col-xl-3">
+              <label class="label-nomandatory width_50px">Payment Type:</label>
+              <div class="input-text-con calc_width_50">
+                <app-input-text [type]="'text'" [value]="model.payment_Type"
+                  (modelChange)="changeModel($event,'payment_Type')" [placeHolder]="''" [readonly]="true" tabindex="-1"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-5 col-xl-5">
+              <label class="label-mandatory width_50px">PO #<span class="asterisk">*</span>:</label>
+              <div class="input-text-con calc_width_50">
+                <app-input-text [type]="'text'" [value]="model.po_Number"
+                  (modelChange)="changeModel($event,'po_Number')" [placeHolder]="''" [required]="true" [tabindex]="7" 
+                  [isEditMode]="isEditMode"
+                  [jsonField]="'po_Number'"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-7 col-xl-6">
+              <label class="label-nomandatory width_65px">Requestor:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.requestor_Name"
+                  (modelChange)="changeModel($event,'requestor_Name')" [placeHolder]="''" 
+                  [tabindex]="8"
+                  [jsonField]="'requestor_Name'"
+                  [isEditMode]="isEditMode"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-5 col-xl-3">
+              <label class="label-nomandatory width_50px">Sho-Air Bill #:</label>
+              <div class="input-text-con calc_width_50">
+                <app-input-text [type]="'text'" [value]="model.shoair_Bill_Number"
+                  (modelChange)="changeModel($event,'shoair_Bill_Number')" [placeHolder]="''" [tabindex]="9" 
+                  [isEditMode]="isEditMode"
+                  [jsonField]="'shoair_Bill_Number'"></app-input-text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section-con">
+    <div class="col-lg-6 paddright5">
+      <div class="component-container">
+        <div class="title-con">
+          Bill To
+        </div>
+        <div class="content-con">
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-mandatory width_65px">Bill To<span class="asterisk d-none d-md-inline">*</span><div>&nbsp;Name<span class="asterisk d-md-none ">*</span>: </div></label>
+              <div class="input-text-con calc_width_65 fw-dropdown ls-dropdown">
+                <app-autopopulate-input-text [displayKey]="billToNameHeaders[1][1]" [headers]="billToNameHeaders"
+                  [gridList]="ddBillToOptions" (serchText)="serchTextChangehandler($event)" [class]="autoComplete"
+                  [value]="model.billTo_Name"
+                  (selection)="ddBillToChangeHandler($event)" [required]="true" [placeHolder]="''" [isSearchable]="true"
+                  [tabindex]="1" id="billto" [setFocus]="true" [isEditMode]="isEditMode" [showAlertBefore]="isEditUrl"
+                  [jsonField]="'billTo_Name'">
+                </app-autopopulate-input-text>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Address 1:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.billTo_Address1"
+                  (modelChange)="changeModel($event,'billTo_Address1')" [placeHolder]="''" [readonly]="true" tabindex="-1"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Address 2:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.billTo_Address2" [readonly]="true"
+                  (modelChange)="changeModel($event,'billTo_Address2')" [placeHolder]="''" [tabindex] ="2"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">City:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.billTo_City"
+                  (modelChange)="changeModel($event,'billTo_City')" [placeHolder]="''" [readonly]="true" tabindex="-1"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 field-row paddleft0 mob-paddleft10">
+            <div class="row state-row">
+              <div class="col-md-5">
+                <label class=" width_65px">State:</label>
+                <div class="input-text-con calc_width_65">
+                  <app-input-text [type]="'text'" [value]="model.billTo_State"
+                    (modelChange)="changeModel($event,'billTo_State')" [placeHolder]="''" [readonly]="true" tabindex="-1"></app-input-text>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="input-text-con mob-width100 mob-padding0">
+                  <app-zip-code [value]="model.billTo_Zip" (zipCode)="zipCodeChangeHandler($event)" [readonly]="true" tabindex="-1" >
+                  </app-zip-code>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 paddleft5">
+      <div class="component-container">
+        <div class="title-con">
+          Contact Information
+        </div>
+        <div class="content-con">
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px ">Attention To:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="model.billTo_Attention"
+                  (modelChange)="changeModel($event,'billTo_Attention')" [placeHolder]="''" [tabindex]="10" [isEditMode]="isEditMode"
+                  [jsonField]="'billTo_Attention'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_50px">Email Address:</label>
+              <div class="input-text-con calc_width_50">
+                <app-input-text [type]="'email'" [value]="model.billTo_Email"
+                  (modelChange)="changeModel($event,'billTo_Email')" [placeHolder]="''" [tabindex]="11" [isEditMode]="isEditMode"
+                  [jsonField]="'billTo_Email'"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-6">
+              <label class="label-nomandatory width_65px">Phone Number:</label>
+              <div class="input-text-con calc_width_120">
+                <app-phone-number [type]="'mobile'" [value]="model.billTo_Phone"
+                  (modelChange)="changeModel($event,'billTo_Phone')" [placeHolder]="''" [tabindex]="12" [isEditMode]="isEditMode"
+                  [jsonField]="'billTo_Phone'"></app-phone-number>
+
+
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="label-nomandatory width_50px">Fax Number:</label>
+              <div class="input-text-con calc_width_120">
+                <app-phone-number [type]="'mobile'" [placeHolder]="''" [value]="model.billTo_Fax" (modelChange)="changeModel($event,'billTo_Fax')"
+                [tabindex]="13" [isEditMode]="isEditMode" [jsonField]="'billTo_Fax'">
+                </app-phone-number>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row section-con company-con">
+    <div class="col-lg-6 paddright5" >
+    <!--Billto Selection INTEl Only-->
+    <div class="component-container" *ngIf="isIntelModel">
+        <div class="title-con">Intel Only</div>
+    <div class="content-con">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="field-row">
+            <label class="label-mandatory width_65px">LOC:<span class="asterisk">*</span></label>
+            <div class="input-text-con calc_width_65 aw-dropdown ls-dropdown">
+              <!-- <app-dropdown [options]="ddOptions"></app-dropdown> -->
+              <app-dropdown-grid [gridList]="intelLocations" [headers]="intelLocationsheaders" [displayKey]="intelLocationsheaders[1][1]"
+                    [required]="true" [selectedValue]="intelLocation" (selection)="intelLocationSelecthandler($event,intelLocationsheaders[0][1])"
+                    [tabindex]="14" [isEditMode]="isEditMode"
+                    [jsonField]="'locationCode'"></app-dropdown-grid>
+            </div>
+          </div>
+          <div class="field-row">
+            <label class="label-mandatory width_65px">CC:<span class="asterisk">*</span></label>
+            <div class="input-text-con calc_width_65">
+              <app-input-text [type]="'text'" [required]="true"  [placeHolder]="''" [value]="intelModel.ccref"
+                  (modelChange)="changeIntelmodel($event,'ccref')" [tabindex]="15" [isEditMode]="isEditMode"
+                  [jsonField]="'ccref'"></app-input-text>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-6 paddright0 mob-paddlr10">
+              <label class="label-nomandatory width_65px">ISM:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [placeHolder]="''" [value]="intelModel.ism_MSINV" 
+				        (modelChange)="changeIntelmodel($event,'ism_MSINV')"
+                [tabindex]="16" [isEditMode]="isEditMode"
+                [jsonField]="'ism_MSINV'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-6 paddleft0 mob-paddlr10">
+              <label class="label-nomandatory width_65px">DDLC:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [placeHolder]="''" [value]="intelModel.ddlc_MOP" 
+				        (modelChange)="changeIntelmodel($event,'ddlc_MOP')"
+                [tabindex]="17" [isEditMode]="isEditMode"
+                [jsonField]="'ddlc_MOP'"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-12">
+              <label class="label-nomandatory width_65px noteTxt">Notes:</label>
+              <div class="input-text-con notes-con calc_width_65">
+                <!-- <app-input-text [type]="'text'" [placeHolder]="'sfsdfd'"></app-input-text> -->
+              <!--  <textarea placeholder="" [(ngModel)]="intelModel.notes" [tabindex]="18" 
+				      [readonly]="isEditMode"
+              (input)="changeIntelNotes($event)"></textarea> -->
+              <app-textarea [height]="'60px'" 
+              [tabindex]="18"          
+              [value]="intelModel.notes"
+              (modelChange)="changeIntelNotes($event)"                            
+              [isEditMode]="isEditMode"
+              [jsonField]="'notes'"></app-textarea>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+    <!--Billto Selection INTEl Only-->
+    <div class="component-container" *ngIf="isMicrosoftModel">
+    <div class="title-con">Microsoft Only</div>
+    <div class="content-con">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="row field-row">
+            <div class="col-md-4">
+              <label class="label-nomandatory width_65px">REF:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="microsoftModel.ccref" [placeHolder]="''"
+                (modelChange)="changeMicrosoftmodel($event,'ccref')" [tabindex]="14" 
+                [isEditMode]="isEditMode"  [jsonField]="'ccref'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="label-nomandatory width_65px">MS Inv:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [value]="microsoftModel.ism_MSINV" [placeHolder]="''"
+                (modelChange)="changeMicrosoftmodel($event,'ism_MSINV')" [tabindex]="15" 
+                [isEditMode]="isEditMode" [jsonField]="'ism_MSINV'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <label class="label-nomandatory width_65px">MOP:</label>
+                <div class="input-text-con calc_width_65">
+                  <app-input-text [type]="'text'" [value]="microsoftModel.ddlc_MOP" [placeHolder]="''"
+                  (modelChange)="changeMicrosoftmodel($event,'ddlc_MOP')" [tabindex]="16" 
+                  [isEditMode]="isEditMode" [jsonField]="'ddlc_MOP'"></app-input-text>
+                </div>
+              </div>
+          </div>
+          <div class="row field-row">
+              <div class="col-md-12">
+              <label class="label-nomandatory width_65px noteTxt">Notes:</label>
+              <div class="input-text-con notes-con calc_width_65">
+                <!-- <app-input-text [type]="'text'" [placeHolder]="'Input Text'"></app-input-text> -->
+         <!--   <textarea placeholder="" [value]="(selectedClient && selectedClient.BillTo_Intel_Notes )?selectedClient.BillTo_Intel_Notes:''"
+                [(ngModel)]="microsoftModel.notes" [tabindex]="17" [readonly]="isEditMode"
+                (input)="changeInmicrosoftNotes($event)"
+                ></textarea> -->
+
+              <app-textarea [height]="'60px'" 
+              [tabindex]="17"          
+              [value]="microsoftModel.notes"
+              (modelChange)="changeInmicrosoftNotes($event)"                            
+              [isEditMode]="isEditMode"
+              [jsonField]="'notes'"></app-textarea>
+
+              </div>
+              </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+      <div class="component-container" *ngIf="!isMicrosoftModel && !isIntelModel">
+          <div class="title-con">&nbsp;</div>
+          <div class="content-con">
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-6 paddleft5">
+        <div class="component-container" *ngIf="!isCreditCard()">
+            <div class="title-con">&nbsp;</div>
+            <div class="content-con">
+            </div>
+        </div>
+      <div class="card-container component-container" *ngIf="isCreditCard()">
+        <div class="title-con">
+          Credit Card Information
+          <img *ngIf="!isEditMode" (click)="displayCreditCardHandler($event)" src="../../../../../../assets/images/icon/card.png" alt="" />
+        </div>
+        <div class="content-con">
+          <div class="row field-row">
+            <div class="col-md-5">
+              <label class="label-nomandatory width_65px">Credit Card Type:</label>
+              <div class="input-text-con calc_width_65">
+                <!-- <app-dropdown [options]="ddCreditCardTypes"></app-dropdown> -->
+                <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                  [value]="(creditCardInfo && creditCardInfo.credit_card_type )? creditCardInfo.credit_card_type:''"
+                  (modelChange)="changeModel($event,'card_Type')" [tabindex]="-1"
+                  [jsonField]="'card_Type'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <label class="label-nomandatory width_65px">Name on Card:</label>
+              <div class="input-text-con calc_width_65">
+                <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                  [value]="(creditCardInfo && creditCardInfo.first_name )?creditCardInfo.first_name + ' ' + creditCardInfo.last_name:''"
+                  (modelChange)="changeModel($event,'card_Holder_Name')" [tabindex]="-1"
+                   [jsonField]="'card_Holder_Name'"></app-input-text>
+              </div>
+            </div>
+          </div>
+          <div class="row field-row">
+            <div class="col-md-5">
+              <label class="label-mandatory width_65px">Card<span class="asterisk d-none d-md-inline">*</span><div>&nbsp;Number<span class="asterisk d-md-none ">*</span>:</div></label>
+              <div class="input-text-con calc_width_65 fw-dropdown rs-dropdown mls-dropdown">
+                <!-- <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                [value]="(creditCardInfo && creditCardInfo.card_number )? 'xxxx xxxx xxxx '+creditCardInfo.card_number:''"
+				 (modelChange)="model.card_Number = $event"
+        ></app-input-text> -->
+
+                <app-dropdown-grid [gridList]="creditCardInfos" [headers]="creditCardheaders"
+                  [displayKey]="creditCardheaders[0][1]"
+                  (selection)="creditCardSelecthandler($event,creditCardheaders[0][1])" [selectedValue]="model.card_Number" [required]="true"
+                  [reset]="ddReset" [tabindex]="(isIntelModel)?18:14" [isEditMode]="isEditMode"
+                  [jsonField]="'card_Number'"></app-dropdown-grid>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-7 mb7 expiration-text">
+                  <label class="label-nomandatory width_65px">Expiration MM/YY:</label>
+                  <div class="input-text-con width_50px">
+                    <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                      [value]="(creditCardInfo && creditCardInfo.expiration_mmyy )?creditCardInfo.expiration_mmyy.split('-')[1]:''"
+                      (modelChange)="changeModel($event,'card_Expiration_Date')" [tabindex]="-1"
+                      [jsonField]="'card_Expiration_Date'"></app-input-text>
+
+                  </div>
+                  <div class="linespace">/</div>
+                  <div class="input-text-con width_50px">
+                    <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                      [value]="(creditCardInfo && creditCardInfo.expiration_mmyy )?(creditCardInfo.expiration_mmyy.split('-')[0] ? creditCardInfo.expiration_mmyy.split('-')[0].substr(creditCardInfo.expiration_mmyy.split('-')[0].length -2) : ''):''"
+                      (modelChange)="cardExpirationDateChange($event)" [tabindex]="-1"
+                      [jsonField]="'card_Expiration_Date'"></app-input-text>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <label class="label-mandatory width_50px">Approval<span class="asterisk d-none d-md-inline">*</span><div>&nbsp;Number<span class="asterisk d-md-none">*</span>:</div></label>
+                  <div class="input-text-con calc_width_50">
+                    <app-input-text [type]="'text'" [placeHolder]="''"
+                    [value]="model.card_Approval_No" [isEditMode]="isEditMode"
+                      (modelChange)="changeModel($event,'card_Approval_No')" [required]="true" [tabindex]="(isIntelModel)?19:15"
+                      [jsonField]="'card_Approval_No'"></app-input-text>
+                  </div>
+                </div>
+                <!-- <div class="col-md-7">
+                    <label class="label-nomandatory width_65px">Approval Number:</label>
+                    <div class="input-text-con calc_width_90">
+                      <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                        [value]="approvalNumber"
+                        (modelChange)="model.card_Approval_No = $event" [tabindex]="-1"></app-input-text>
+                    </div>
+                  </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card-popup" *ngIf="displayCreditCardPop">
+  <div class="component-container" >
+    <div class="title-con">
+      Add New Credit Card
+    </div>
+    <div class="content-con">
+      <div class="row field-row">
+        <div class="col-md-6">
+          <label class="label-mandatory width_70px">Credit Card<span class="asterisk d-none d-md-inline">*</span><div>&nbsp;Type<span class="asterisk d-md-none ">*</span>: </div></label>
+          <div class="input-text-con calc_width_70">
+            <!-- <app-dropdown-grid></app-dropdown-grid> -->
+            <!-- <app-dropdown [options]="creditCardTypes"></app-dropdown> -->
+            <app-dropdown-grid [gridList]="ddcreditCardTypes" [headers]="creditCardTypeHeaders" [isCreditCard]="true"
+            [displayKey]="creditCardTypeHeaders[0][1]"
+            (selection)="creditCardTypeSelecthandler($event,creditCardTypeHeaders[0][1])"
+            [selectedValue]="creditCardType" [reset]="ddReset" [required]="true" [setFocus]="true"
+            [jsonField]="'credit_card_type'"></app-dropdown-grid>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="label-mandatory width_70px">Address<span class="asterisk">*</span>:</label>
+          <div class="input-text-con calc_width_70">
+            <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.address1 = $event" 
+            [required]="true" [jsonField]="'address1'"></app-input-text>
+          </div>
+        </div>
+      </div>
+      <div class="row field-row">
+        <div class="col-md-6">
+          <label class="label-mandatory width_70px">Name on<span class="asterisk d-none d-md-inline">*</span> <div>&nbsp;Card<span class="asterisk d-md-none ">*</span>:</div></label>
+          <div class="input-text-con calc_width_70">
+            <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.name = $event" 
+            [required]="true" [jsonField]="'name'"></app-input-text>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="label-mandatory width_70px">City<span class="asterisk">*</span>:</label>
+          <div class="input-text-con calc_width_70">
+            <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.city = $event" 
+            [required]="true" [jsonField]="'city'"></app-input-text>
+          </div>
+        </div>
+      </div>
+      <div class="row field-row">
+        <div class="col-md-6">
+          <label class="label-mandatory width_70px">Card<span class="asterisk d-none d-md-inline">*</span> <div>&nbsp;Number<span class="asterisk d-md-none ">*</span>:</div></label>
+          <div class="input-text-con calc_width_70">
+            <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.card_number = $event" 
+            [required]="true"  [jsonField]="'card_number'"></app-input-text>
+          </div>
+        </div>
+        <div class="col-md-6 field-row mob-mb0">
+          <div class="row">
+            <div class="col-md-5">
+              <label class="label-mandatory width_70px">State<span class="asterisk">*</span>:</label>
+              <div class="input-text-con calc_width_70">
+                <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.state = $event" 
+                [required]="true" [jsonField]="'state'"></app-input-text>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="input-text-con mob-width100 mob-mb0 paddleft0">
+                <app-zip-code [value]="" (zipCode)="ccModel.zip = $event"  [isCreditCard]="true" [required]="true">
+                </app-zip-code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row field-row">
+        <div class="col-md-6 expiration-area flex-column flex-md-row">
+          <label class="label-mandatory width_70px">Expiration<span class="asterisk d-none d-md-inline">*</span> <div>&nbsp;MM/YY<span class="asterisk d-md-none">*</span>:</div></label>
+          <div class="input-text-con">
+            <app-dropdown [options]="months" (selection)="monthChangeHandler($event)" [required]="true" [isCreditCard]="true"></app-dropdown>
+            <div class="linenew"></div>
+            <app-dropdown [options]="years" (selection)="yearChangeHandler($event)" [required]="true" [isCreditCard]="true"></app-dropdown>
+          </div>
+          
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+              <div class="col-md-6">
+                <label class="label-mandatory width_70px">Security<span class="asterisk d-none d-md-inline">*</span> <div>&nbsp;Code<span class="asterisk d-md-none">*</span>:</div></label>
+                <div class="input-text-con calc_width_70">
+                  <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="ccModel.cardCode = $event" 
+                  [required]="true" [jsonField]="'cardCode'"></app-input-text>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="label-mandatory width_70px">Approval<span class="asterisk d-none d-md-inline">*</span> <div>&nbsp;Number<span class="asterisk d-md-none">*</span>:</div></label>
+                <div class="input-text-con calc_width_70">
+                  <app-input-text [type]="'creditcard'" [placeHolder]="''" (modelChange)="approvalNumber = $event"  [required]="true"></app-input-text>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row field-row">
+        <div class="col-6">
+            <button class="btn-primary float-left" (click)="cancelCreditCardPopHandler($event)">Cancel</button>
+        </div>
+        <div class="col-6">
+            <button class="btn-primary float-right" (click)="saveCreditCardClickHandler($event)">Save New Credit Card</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

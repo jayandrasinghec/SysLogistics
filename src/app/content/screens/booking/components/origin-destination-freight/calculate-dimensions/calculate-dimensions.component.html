@@ -1,0 +1,113 @@
+<div class="page-container dcalculator-page sp-component-container">
+ 
+  <div class="sp-component-container-inner">
+    <div class="max-w980 margin_auto">
+        <div class="title">Dimensional Calculator</div>
+        <div class="radio-btn-group">
+          <div class="radiobtn-option-con">
+            <label class="radio-btn-option">
+              <input type="radio" checked="checked" value="standard" name="radio" (change)="radioBtnChangehandler($event)">
+              <span class="checkmark"></span>
+              Standard
+            </label>
+          </div>
+          <!-- <div class="radiobtn-option-con">
+                      <label class="radio-btn-option">
+                      <input type="radio" value="metric"  name="radio" (change)="radioBtnChangehandler($event)">
+                      <span class="checkmark"></span>
+                      Metric
+                    </label>
+                  </div> -->
+        </div>
+        <div class="table-wrapper max-w980">
+          <table id="DimensionalCalculator" class="calculator-table table table-striped table-bordered table-fixed">
+            <thead>
+              <tr>
+                <th>EDIT</th>
+                <th>PCS</th>
+                <th>LENGTH</th>
+                <th>WIDTH</th>
+                <th>HEIGHT</th>
+                <th>DIM WT.</th>
+                <th>DELETE</th>
+                <!-- <th>{{(isStandardTable)?'LENGTH CM':'LENGTH INCH'}}   </th>
+                            <th>{{(isStandardTable)?'WIDTH CM':'WIDTH INCH'}} </th>
+                            <th>{{(isStandardTable)?'HEIGHT CM':'HEIGHT INCH'}}   </th>
+                            <th>K DIM WT.</th>
+                            <th>CBM</th> -->
+              </tr>
+            </thead>
+            <perfect-scrollbar style="max-height: 510px;" [scrollIndicators]>
+            <tbody style="max-height: 510px; overflow: auto;">
+              <tr [class.disabled]="sectionShouldDisabled"
+                  [style.display]="row.statusCode && row.statusCode === 'D' ? 'none' : 'block' " 
+                  *ngFor="let row of arrTableRows;let i= index" >
+                <td> 
+                  <span (click)="rowEditClickHandler($event,row)"><img src="../../../../assets/images/icon/edit.png" alt="" /></span>
+                </td>
+                <td>
+                  <app-input-number [id]="'ip1_'+i" [autofocus]="true" [value]="row.pcs" [editable]="row.isEditable" (click)="rowClickHandler($event,row)"
+                    (changeEvent)="PCSChangehandler($event,row)" (focusOutEvent)="focusOuthandler($event,row, 1)">
+                  </app-input-number>
+                </td>
+                <td>
+                  <app-input-number [id]="'ip2_'+i" [value]="row.length" [editable]="row.isEditable" (click)="rowClickHandler($event,row)"
+                    (changeEvent)="LengthChangehandler($event,row)" (focusOutEvent)="focusOuthandler($event,row, 2)">
+                  </app-input-number>
+                </td>
+                <td>
+                  <app-input-number [id]="'ip3_'+i" [value]="row.width" [editable]="row.isEditable" (click)="rowClickHandler($event,row)"
+                    (changeEvent)="WidthChangehandler($event,row)" (focusOutEvent)="focusOuthandler($event,row, 3)">
+                  </app-input-number>
+                </td>
+                <td>
+                  <app-input-number [id]="'ip4_'+i" [value]="row.height" [editable]="row.isEditable" (click)="rowClickHandler($event,row)"
+                    (changeEvent)="HeightChangehandler($event,row)" (focusOutEvent)="focusOuthandler($event,row, 4)">
+                  </app-input-number>
+                </td>
+                <td >
+                    <div [id]="'ip5_'+i">{{row.dimWt}}
+                    </div>
+                </td>
+                <td>
+                  <span (click)="deleteHandle($event,row)"><img src="../../../../assets/images/icon/delete.png" alt="" /></span>
+                </td>
+              </tr>
+            </tbody>
+          </perfect-scrollbar>
+          </table>
+        </div>
+        <div class="total-con flex-column flex-md-row max-w980">
+          <div class="item-con">
+            <label class="label-nomandatory ">Total Dimensions LBS:</label>
+            <div class="ip-con">
+              <app-input-number id="total-dim-lbs" [disabled]="true" [readonly]="true" [bgcolor]="'#ebebeb'" [textAlign]="'left'"
+                [editable]="true" [value]="totalDimInLBS" [fontWeight]="'bold'"></app-input-number>
+            </div>
+          </div>
+          <div class="item-con">
+            <label class="label-nomandatory ">Total Dimensions KG:</label>
+            <div class="ip-con">
+              <app-input-number id="total-dim-kg" [disabled]="true" [readonly]="true" [bgcolor]="'#ebebeb'" [textAlign]="'left'"
+                [editable]="true" [value]="totalDimInKG" [fontWeight]="'bold'"></app-input-number>
+            </div>
+          </div>
+          <div class="item-con">
+            <label class="label-nomandatory ">Total pieces:</label>
+            <div class="ip-con">
+              <app-input-number id="total-pieces" [disabled]="true" [readonly]="true" [bgcolor]="'#ebebeb'" [textAlign]="'left'"
+                [editable]="true" [value]="totalPieces" [fontWeight]="'bold'"></app-input-number>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="nav-con mt10">
+      <div class="max-w980 d-flex flex-row m-auto ">
+          <button type="button" class="btn btn-primary mr-auto tab-w110px " (click)="closeBtnClickHandler($event)">Close Form</button>
+          <button type="button" class="btn btn-primary nav-btn ml-auto"
+            [disabled]="sectionShouldDisabled"
+            (click)="saveBtnClickHandler($event)">Save Dimensions</button>
+      </div>
+    </div>    
+  </div>  
+</div>

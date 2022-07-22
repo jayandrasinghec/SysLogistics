@@ -1,0 +1,13 @@
+.ribbon_wrapper{
+    @media screen and (max-width: 480px) {
+        .col {
+            width: 100%;
+            margin: 5px 0;
+            padding: 0 10px;
+        }
+    }
+}
+
+.status-bar-container {
+    margin-bottom: 10px;
+}

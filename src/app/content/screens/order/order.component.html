@@ -1,0 +1,11 @@
+<div>
+<app-ribbon
+    [ribbonModel]="ribbonModel"
+    [showOrderDetails]="true">
+</app-ribbon>
+</div>
+<div class="status-bar-container" *ngIf="orderModel">
+  <app-status-bar [progress]="progress" [description]="description"></app-status-bar>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,33 @@
+<div class="nav-con">
+  <div class="d-flex flex-row">
+      <div class="mr-auto">
+        <button type="button" class="btn btn-primary ml0" *ngIf="!orderBooked && !isEdit"
+          (click)="cancelBtnClickHandler($event)">Cancel Booking</button>
+        <button type="button" class="btn btn-primary ml0" *ngIf="isEdit"
+          (click)="closeFormBtnClickHandler($event)">Close Form</button>
+      </div>
+      <div class="text-center" *ngIf="orderSerchMode">
+        <button type="button" class="btn btn-primary" (click)="orderHistoryBtnHandler($event)">Order History</button>
+        <button type="button" class="btn btn-primary" [class.consolidate]="consolidation_type =='C'"
+          [class.master]="consolidation_type =='M'" (click)="consolidateBtnHandler($event)">Consolidate</button>
+        <button type="button" class="btn btn-primary" [class.nomove]="orderStatus"
+          (click)="statusBtnHandler($event)">Status</button>
+        <button type="button" class="btn btn-primary" (click)="ntsBtnHandler($event)">N-T-S</button>
+      </div>
+      <div class="ml-auto">
+          <button type="button" class="btn btn-primary" *ngIf="isEdit && showEditBtn"
+          (click)="editBtnClickHandler($event)">Edit Order</button>
+          <button type="button" class="btn btn-primary" *ngIf="orderBooked"
+          (click)="printPreviewBtnClickHandler($event)">Print Preview</button>
+          <button type="button" class="btn btn-primary" *ngIf="showPrev && !orderBooked"
+          (click)="prevBtnClickHandler($event)">Previous</button>
+          <button type="button" class="btn btn-primary" *ngIf="showNext"
+          (click)="nextBtnClickHandler($event)">Next</button>
+          <button type="button" class="btn btn-primary"
+          *ngIf="!isEdit && !showNext && !orderBooked || isEdit && showSaveOrder"
+          (click)="saveOrderBtnClickHandler($event)">Save Order</button>
+        <button type="button" class="btn btn-primary" *ngIf="orderBooked"
+          (click)="bookNewOrderBtnClickHandler($event)">Book New Order</button>
+      </div>
+    </div>
+</div>

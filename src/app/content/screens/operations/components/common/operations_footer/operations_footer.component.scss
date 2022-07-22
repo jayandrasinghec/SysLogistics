@@ -1,0 +1,44 @@
+.nav-con {
+	.checkbox-group{
+    min-width: 30%;
+	}
+	.btn-primary {
+		width: 100px;
+	 	margin-right: 5px;
+	}
+	@media screen and (max-width: 767px){
+		.d-flex {
+			display: block!important;
+			max-width: 200px!important;
+			margin-right: auto;
+			.btn-primary {
+				width: 200px!important;
+				margin: 0 0 10px;
+			}
+		}
+	}
+}
+.update-cmt-checkbox{
+	display: inline-block;
+	width: auto !important;
+	label{
+		font-size: 8pt;
+		.checkmark{
+		   margin: 0px 5px;
+		}
+	}
+}
+.master {
+		background: #B8D774;
+		border-color: #B8D774;
+	}
+
+.consolidate {
+		background: #FFFF00;
+		border-color: #FFFF00;
+	}
+
+.nomove {
+		background: #B22222;
+		border-color: #B22222;
+	}

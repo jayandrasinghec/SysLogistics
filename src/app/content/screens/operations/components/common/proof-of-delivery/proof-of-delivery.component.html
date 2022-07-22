@@ -1,0 +1,97 @@
+<div class="page-container proof-delivery-container">
+    <div class="component-container mb10">
+        <div class="title-con">
+            Proof Of Delivery
+        </div>
+        <div class="content-con padding15">
+            <div class="row field-row mb10 mob-mb0">
+                <div class="col-lg-2 col-md-4">
+                    <label class="label-nomandatory width_65px">Pieces:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>                    
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">Actual Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">Actual Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>         
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_65px">Signed By:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>       
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="row">
+                        <div class="col-7 paddright0 mob-paddlr15 ">
+                            <label class="label-nomandatory width_60px">Date:</label>
+                            <div class="input-text-con calc_width_60">
+                                <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-5 paddleft0 mob-paddlr15 ">
+                            <label class="label-nomandatory width_40px">Time:</label>
+                            <div class="input-text-con calc_width_40">
+                                <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                            </div>
+                        </div>  
+                    </div>                    
+                </div>  
+                <div class="col-lg-2 col-md-4 offset-lg-2 paddleft0 mob-paddlr15">
+                    <label class="label-nomandatory width_115px">DIM Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">DIM Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>          
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_65px">Enterd On:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_60px">Enterd By:</label>
+                    <div class="input-text-con calc_width_60">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true"></app-input-text>
+                    </div>
+                </div>   
+            </div>
+            <div class="row flex-column flex-md-row justify-content-center delivery-thumb">
+                <div class="img-thumbnail">
+                    <img  src="../../../../assets/images/image1.jpg" alt="" />
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox f12">
+                        <input type="checkbox"><span class="checkmark"></span> Send Update with Picture
+                    </label>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="nav-con">
+        <div class="btn-group-link">
+            <div class="d-flex flex-column flex-md-row justify-content-center">
+                <div class="mr-auto">
+                    <button class="btn-primary btn5">Add New</button>
+                    <button class="btn-primary btn5">Update Image</button>
+                </div>
+                <button class="ml-auto btn-primary border-radius-5">Close</button>                
+            </div>
+        </div>            
+    </div>
+</div>

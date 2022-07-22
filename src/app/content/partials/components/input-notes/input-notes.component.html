@@ -1,0 +1,11 @@
+<div class="note-textarea" [class]="class"  (click)="inputToFocus.focus()" [ngClass]="isEditable()? 'editmode' : 'viewmode'">   
+    <perfect-scrollbar [style.maxHeight]="scrollbarHeight" [scrollIndicators] >
+    <textarea #ipElement [style.height]="autoHeight" autocomplete="nope" [readonly]="!isEditable()" [(ngModel)]="modelName" #inputToFocus (input)="autoGrow($event)" (change)="textChange($event)"  (focusout)="focusOutFunction($event)" ></textarea>   
+    <ul *ngIf="noteList && noteList.length>0">
+        <li  *ngFor="let notes of noteList">
+            <span>{{utilsService.getDisplayDateTime(notes.date)}}</span><span>{{ getuserName(notes.userId) }}</span>
+            <span class="desc">{{ notes.noteText}}</span>
+        </li>       
+    </ul>   
+    </perfect-scrollbar>      
+</div>   

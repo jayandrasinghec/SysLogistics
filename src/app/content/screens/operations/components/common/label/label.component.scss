@@ -1,0 +1,26 @@
+.a_labels {
+    .btn-group-link {
+        padding-left: 107px;
+    }
+
+}
+.c_labels {
+    .btn-group-link {
+        padding-left: 117px;
+    }
+}
+.error{
+      border: 1px solid red;
+    }
+@media screen and (max-width: 767px) {
+    .a_labels, .c_labels {
+        .btn-group-link {
+            padding-left: 0;
+        }    
+    }
+    .btn-group-link {
+        .btn-primary {
+            width: 100px;
+        }
+    }
+}

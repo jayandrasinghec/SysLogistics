@@ -1,0 +1,28 @@
+.preview-thumb {
+    margin: 20px 0;
+    img {
+        margin: 10px;
+    }
+}
+.upload-btn-wrapper {
+    input[type=file] {
+        margin-left: 15px;       
+    }
+}
+.description-label {
+    vertical-align: top;
+    padding-top: 10px;
+}
+@media screen and (max-width: 767px) {
+    .description-label {
+        padding-top: 0;
+    }
+    .preview-thumb {
+        margin: 10px 0;
+    }
+    .upload-btn-wrapper {
+        input[type=file] {
+            margin-left: 0;       
+        }
+    }
+}

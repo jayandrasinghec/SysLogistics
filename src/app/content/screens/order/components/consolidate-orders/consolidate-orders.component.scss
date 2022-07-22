@@ -1,0 +1,93 @@
+.consolidate-order {
+    .field-row {
+        margin-bottom: 15px;
+        .input-text-con {
+            display: inline-block;
+            padding-left: 10px;
+            textarea {
+                height: 65px;
+            }
+        }
+    }
+    .radio-btn-group {
+        margin: 0;
+        .radio-btn-option {
+            font-size: 13px;
+        }
+        @media screen and (max-width: 767px) {
+            margin: 0 -10px;
+            .radiobtn-option-con {
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .table-wrapper {
+        margin-bottom: 60px;       
+        table {
+            width: 100%;
+            tr {
+                td, th {
+                     &:first-child {
+                        width: 90px;
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 1199px) {            
+            overflow-x: auto;
+            table {
+                width: 1130px;
+            }
+        }
+        @media screen and (max-width: 767px) {            
+            margin-bottom: 20px;
+        }
+    }
+    .bottom-content {
+        margin-bottom: 60px;
+        .item-con, .ip-con {
+            display: inline-block;
+        }
+        .ip-con  {
+            margin: 0 10px;
+            input {
+                width: 60px;
+            }           
+        }
+        @media screen and (max-width: 1024px) {
+            .item-con {
+                margin-bottom: 10px;
+                label {
+                    width: 75px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        @media screen and (max-width: 767px) {            
+            margin-bottom: 20px;
+        }
+    }
+    
+    @media screen and (max-width:767px) {
+        .width_75px, .calc_width_75 {
+            text-align: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .field-row {
+            .input-text-con {
+                padding-left: 0;
+            }
+        }
+    }
+    .error{
+      border: 1px solid red;
+    }
+    .master{
+      background:#b8d774;
+    }
+    .consolidate{
+      background:#ffff66;
+    }
+}
+  

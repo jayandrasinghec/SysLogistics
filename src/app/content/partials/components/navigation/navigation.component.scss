@@ -1,0 +1,20 @@
+.nav-con {
+	margin: 10px auto 0;
+	.master {
+		background: #B8D774;
+		border-color: #B8D774;
+	}
+
+	.consolidate {
+		background: #FFFF00;
+		border-color: #FFFF00;
+	}
+
+	.nomove {
+		background: #B22222;
+		border-color: #B22222;
+	}
+	@media screen and (max-width: 991px){
+		margin: 0 auto 10px;
+	}
+}

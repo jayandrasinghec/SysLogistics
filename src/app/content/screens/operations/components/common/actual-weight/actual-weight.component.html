@@ -1,0 +1,61 @@
+<div class="actual-weight-container mob-mb10">
+    <div class="component-container mb10">
+        <div class="title-con">Actual Weight</div>
+        <div class="content-con padding15">
+            <div class="row field-row mb10 mob-mb0 align-items-center">
+                <div class="d-flex align-items-center width_20 paddinglr15">
+                    <label class="label-nomandatory width_40px">Pieces:</label>
+                    <div class="input-text-con calc_width_40">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [isEditMode]='isEditable' [required]="true"
+                        [value]="orderModel.pieces" (modelChange)="actualPiecesChangehandler($event)" ></app-input-text>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center width_20 paddinglr15">
+                    <label class="label-nomandatory width_115px">Actual Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true" [isEditMode]='isEditable'
+                        [value]="orderModel.weight_Actual_LB"
+                        (modelChange)="actualaWeightLBSChangehandler($event)" (focusOutEvent)="focusOutHandler($event)"></app-input-text>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center width_20 paddinglr15">
+                    <label class="label-nomandatory width_115px">Actual Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [required]="true" [isEditMode]='false' [readonly]="true"
+                        [value]="orderModel.weight_Actual_KG"
+                        (modelChange)="actualaWeightKGChangehandler($event)"></app-input-text>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center width_20 paddinglr15">
+                    <label class="label-nomandatory width_115px">DIM Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'text'" [placeHolder]="''" [isEditMode]='false' [readonly]='true' 
+                        [value]="orderModel.weight_Dimensional_LB"
+                        ></app-input-text>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center width_20 paddinglr15">
+                    <label class="label-nomandatory width_115px">DIM Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]='true'
+                        [value]="orderModel.weight_Dimensional_KG"
+                        ></app-input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group-link d-flex  justify-content-end">
+                <button class="btn btn-primary" 
+                    (click)='editClickHandler($event)' 
+                    [disabled]="!isEditable && shouldSectionDisabled">Edit</button>
+                <button class="btn btn-primary"
+                    [disabled]="shouldSectionDisabled"
+                    (click)='saveClickHandler($event)'>Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="nav-con">
+        <div class="d-flex flex-row">
+            <button class="ml-auto btn btn-primary tab-w110px" (click)='closeClickHandler($event)'>Close</button>
+        </div>
+    </div>
+</div>

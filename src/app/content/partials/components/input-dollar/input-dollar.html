@@ -1,0 +1,24 @@
+<!--<input #ipElement
+ [value]="(value)?(value | currency:'CAD':'symbol-narrow':'4.2-2'):''"
+ [class]="class"
+ [type]="type"
+ [placeholder]="placeHolder"
+ [required]="required"
+ [readonly]="readonly"
+ [attr.tabindex]="tabindex"
+ (change)="textChange($event)"  (focusout)="focusOutFunction($event)"   />-->
+
+ <input type="text"
+  #ipElement
+   [value]="(value)?(value):''"
+   [ngModel]="value | currency:'USD':'symbol':'2.2'"
+   [ngModelOptions]="{updateOn:'blur'}"
+   [class]="class"
+   [placeholder]="placeHolder"
+   [required]="required"
+   [readonly]="!isEditable()"
+   [attr.tabindex]="tabindex"
+   (ngModelChange)="value = textChange($event)"
+   (focusout)="focusOutFunction($event)"
+   autocomplete="nope"
+   >

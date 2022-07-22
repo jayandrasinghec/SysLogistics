@@ -1,0 +1,20 @@
+<div class="input-number-con">
+    <input  #ipElement1
+     class="ip_number"
+     [id]="id"
+     [value]="(value)?value:''"
+     type="text"
+     minlength="minLength"
+     maxlength="maxLength"
+     [readonly]="!isEditable()"
+     [class.editable]="editable"
+     [class.noneditable]="!editable"
+     [style.backgroundColor]="bgcolor"
+     [style.textAlign]="textAlign"
+     [style.fontWeight]="fontWeight"
+     [autofocus]="autofocus"
+     [disabled]="disabled"
+     autocomplete="nope"
+     (input)="iptextChangehandler($event)"  (focusout)="focusOutFunction($event)" />
+
+</div>

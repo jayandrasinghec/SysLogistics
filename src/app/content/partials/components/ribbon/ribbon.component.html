@@ -1,0 +1,67 @@
+<div  class="component-container order-title mb10" *ngIf="ribbonModel">
+  <div class="content-con">
+      <div class="row ribbon_wrapper align-items-center justify-content-between" >
+          <div class="col">
+              <label class="label-mandatory">Order ID:</label>
+              <div class="input-text-con">
+                  <p>{{ribbonModel.order_ID}}</p>
+              </div>
+          </div>
+          <div class="col">
+              <label class="label-mandatory">Origin Airport:</label>
+              <div class="input-text-con">
+                  <p>{{ribbonModel.origin_Air_Code}}</p>
+              </div>
+          </div>
+          <div class="col" *ngIf="!showOrderDetails">
+              <label class="label-mandatory">Gate Airport:</label>
+              <div class="input-text-con">
+                  <p></p>
+              </div>
+          </div>
+          <div class="col">
+              <label class="label-mandatory">Destination Airport:</label>
+              <div class="input-text-con">
+                  <p>{{ribbonModel.dest_Air_Code}}</p>
+              </div>
+          </div>
+          <div class="col" *ngIf="!showOrderDetails">
+              <label class="label-mandatory">Pickup Date:</label>
+              <div class="input-text-con width_75px">
+                  <p>{{ribbonModel.load_Date}}</p>
+              </div>
+          </div>
+          <div class="col" *ngIf="!showOrderDetails">
+              <label class="label-mandatory">Delivery Date:</label>
+              <div class="input-text-con width_75px">
+                  <p>{{ribbonModel.delivery_Date}}</p>
+              </div>
+          </div>
+
+          <div class="col" *ngIf="showOrderDetails">
+              <label class="label-mandatory">Pieces:</label>
+              <div class="input-text-con">
+                <p>{{ribbonModel.pieces}}</p>
+              </div>
+          </div>
+          <div class="col" *ngIf="showOrderDetails">
+              <label class="label-mandatory">Actual Weight(LBS):</label>
+              <div class="input-text-con">
+                <p>{{ribbonModel.weight_Actual_LB}}</p>
+              </div>
+          </div>
+          <div class="col">
+              <label class="label-mandatory">Booked By:</label>
+              <div class="input-text-con">
+                  <p>{{userName}} </p>
+              </div>
+          </div>
+          <div class="col">
+              <label class="label-mandatory">Booked Date:</label>
+              <div class="input-text-con width_75px">
+                <p>{{getFormattedDateTime(ribbonModel.created_Date)}}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

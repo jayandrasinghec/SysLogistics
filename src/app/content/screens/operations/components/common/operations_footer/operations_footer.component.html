@@ -1,0 +1,45 @@
+<div class="nav-con">
+    <!-- <div class="d-flex flex-column flex-md-row">
+        <div class="update-cmt-checkbox ml-auto"  *ngIf="showCommentCB"
+                [class.master]="isMasterOrder" 
+                [class.consolidate]="isConsolidateOrder">
+                        <label class="checkbox">
+                            <input type="checkbox" [value]="CBComment.isSelected" 
+                            [(ngModel)]="CBComment.isSelected"  
+                            [disabled]="disableComentCB"
+                            (change)="commentsCheckBoxChange($event,CBComment)"><span class="checkmark"></span> Update Consolidated Comments
+                        </label>
+        </div>
+     </div>-->
+    <div class="d-flex flex-column flex-md-row">
+        <div class="mr-auto">
+            <button class="btn btn-primary w110px mr-3" (click)='closeClickHandler($event)'>Close</button>
+        </div>
+        <div class="btn-group-link">
+            <button class="btn-primary btn5" (click)=' showBookingClickHandler($event)'>Show Booking</button>            
+            <button class="btn-primary btn5" (click)='consolidateClickHandler($event)' 
+            [class.master]="isMasterOrder" [class.consolidate]="isConsolidateOrder">Consolidate</button>
+            <button class="btn-primary btn5" (click)='uploadClickHandler($event)'>Upload</button>
+            <button class="btn-primary btn5" (click)='showNotesClickHandler($event)'>Show Notes</button>
+            <button class="btn-primary btn5" (click)='field_repClickHandler($event)'>Field Rep</button>
+            <button class="btn-primary btn5" (click)='searchClickHandler($event)'>Search</button>
+            <button class="btn-primary btn5" (click)='statusClickHandler($event)' [class.nomove]="isNomoveBtn">Status</button>
+            <button class="btn-primary btn5" (click)='serviceFailClickHandler($event)'> Service Fail</button>           
+            <button class="btn-primary update-cmt-checkbox"  *ngIf="showCommentCB"
+                [class.master]="isMasterOrder" 
+                [class.consolidate]="isConsolidateOrder">
+                        <label class="checkbox">
+                            <input type="checkbox" [value]="CBComment.isSelected" 
+                            [(ngModel)]="CBComment.isSelected"  
+                            [disabled]="disableComentCB"
+                            (change)="commentsCheckBoxChange($event,CBComment)"><span class="checkmark"></span> Update Consolidated Comments
+                        </label>
+             </button>
+
+
+        </div>
+        <div class="ml-auto">
+            <button class="btn btn-primary w110px" (click)="saveBtnClickHandler($event)" [disabled]="isSaveDisabled">Save</button>
+        </div>
+    </div>
+</div>

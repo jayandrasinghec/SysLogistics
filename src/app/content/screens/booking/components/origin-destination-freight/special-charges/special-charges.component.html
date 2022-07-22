@@ -1,0 +1,52 @@
+<div class="page-container sp-component-container special-charges-page">
+    <div class="sp-component-container-inner">
+        <div class="special-charges-container">
+            <div class="title">Special Charges</div>
+            <mat-tab-group [selectedIndex]="selectedIndex" (animationDone)="selectedTabChange($event)">
+
+                <mat-tab *ngFor="let tab of dataMap;let i= index;" [label]="getlabel(tab, i)">
+
+                    <div class="table-wrapper">
+                        <table class="specialcharge_table table table-striped table-bordered table-fixed">
+                            <thead>
+                                <tr>
+                                    <th class="paddleft40">
+                                        <!-- <label class="checkbox"><input type="checkbox"><span class="checkmark"></span></label> -->
+                                    </th>
+                                    <th class="paddleft40">Type</th>
+                                    <th class="paddleft40">Amount</th>
+                                </tr>
+                            </thead>
+                            <perfect-scrollbar style="max-height: 530px;" [scrollIndicators]>
+                                <tbody style="max-height: 530px; overflow: auto;">
+                                    <tr *ngFor="let item of getValues(tab, i)">
+                                        <td width="10%" class="paddleft40">
+                                            <label class="checkbox">
+                                                <input
+                                                    [disabled]="shouldDisableSection"
+                                                    type="checkbox"
+                                                    [checked]="item.special_Charge_ID && item.special_Charge_ID!=='0'"
+                                                    (change)="checkboxHandle($event, item)"><span
+                                                    class="checkmark"></span></label></td>
+                                        <td width="45%" class="paddleft40">{{item.charge_Description}}</td>
+                                        <td width="45%" class="paddleft40">{{item.charge_Amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </perfect-scrollbar>
+                        </table>
+                    </div>
+
+                </mat-tab>
+
+            </mat-tab-group>
+            <div class="nav-con mtb10">
+                <div class="d-flex flex-row">
+                    <button class="btn btn-primary mr-auto close-btn tab-w110px " type="button"
+                        (click)="closeBtnClickHandler($event)">Close Form</button>
+                    <button class="btn btn-primary ml-auto tab-w110px " type="button"
+                        (click)="saveBtnClickHandler($event)" [disabled]="shouldDisableSection">Save Charges</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

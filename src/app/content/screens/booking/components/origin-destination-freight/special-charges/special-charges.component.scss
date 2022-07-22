@@ -1,0 +1,35 @@
+.special-charges-container {
+  max-width: 1366px;
+  margin: 0 auto;
+  &.sp-component-container {  
+    .specialcharge_table {
+      min-height: 570px;
+      @media screen and (max-width: 991px) {
+        min-height: 450px;
+      }
+      thead,
+      tbody {
+        display: block !important;
+        width: 100%;
+      }
+      tbody {
+        display: block !important;
+        overflow: auto;
+      }
+      thead {
+        tr {
+          th {
+            &:last-child {
+              border-right: 0px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .ps__rail-y {
+    display: block!important;
+    opacity: 1!important;
+  }
+}
+

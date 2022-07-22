@@ -1,0 +1,75 @@
+<div *ngIf="orderBooked" class="component-container order-title">
+  <div class="content-con" >
+    <div class="row align-items-center justify-content-between" >
+      <div class="col">
+        <label class="label-mandatory">Order ID:</label>
+        <div class="input-text-con">
+          <p>{{orderModel.order_ID}}</p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="label-mandatory">Origin Airport:</label>
+        <div class="input-text-con">
+          <p>{{orderModel.origin_Air_Code}}</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <label class="label-mandatory">Destination Airport:</label>
+        <div class="input-text-con">
+          <p>{{orderModel.dest_Air_Code}}</p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="label-mandatory">Pieces:</label>
+        <div class="input-text-con">
+          <p>{{orderModel.pieces}}</p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="label-mandatory">Actual Weight(LBS):</label>
+        <div class="input-text-con">
+          <p>{{orderModel.weight_Actual_LB}}</p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="label-mandatory">Booked By:</label>
+        <div class="input-text-con">
+          <p>{{userName}} </p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="label-mandatory">Booked Date:</label>
+        <div class="input-text-con">
+          <p>{{getFormattedDateTime(orderModel.created_Date)}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="billing-tab">
+      <nav mat-tab-nav-bar [color]="'primary'" mat-stretch-tabs class="example-stretched-tabs">
+        <a mat-tab-link
+
+          *ngFor="let link of navLinks;let i= index"
+          (click)="tabClickhandler($event,i)"          
+          routerLinkActive ="mat-tab-label-active"
+          #rla="routerLinkActive"
+          [active]="link.isActive"
+          [disabled]="link.isDisabled">
+           {{link.label}}
+          </a>
+        </nav>
+        <router-outlet></router-outlet>
+        <app-navigation
+        [index]="activeLinkIndex"
+        [total]="navLinks.length"
+        [showPrev]="showPrevBtn"
+        [showNext]="showNextBtn"
+        [orderBooked]="orderBooked"
+        (clickEvent)="navigationClickHandler($event)" ></app-navigation>
+</div>
+
+
+

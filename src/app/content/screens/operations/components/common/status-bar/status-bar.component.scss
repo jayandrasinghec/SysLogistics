@@ -1,0 +1,28 @@
+.mat-slider-horizontal {
+  height: 36px;
+  min-width: 128px;
+  width: 100%;
+  pointer-events: none;
+}
+p{
+  padding: 5px;
+  border-radius: 5px;
+  background-color:#dee2e6;
+}
+.slidecontainer{
+  padding-top: 7px;
+
+  .status-text-container {
+    position: relative;
+    margin-bottom: 35px;
+    .status-text {
+      position: absolute;
+      top: 0;
+      display: inline-block;
+      background-color: #737885;
+      color: white;
+      padding: 5px;
+      border-radius: 5PX;
+    }
+  }
+}

@@ -1,0 +1,142 @@
+<div class="carrier-edit-page">  
+    <div class="sp-component-container">
+        <div class="sp-component-container-inner auto-height grey-bg mb10 padd padding15">
+            <div class="component-container mb10">
+                <div class="title-con">Add Additional Carrier</div>
+                <div class="content-con padding15">
+                    <div class="row flex-column flex-md-row mb10 lg-mb0">
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Carrier Code:</label>
+                            <div class="input-text-con calc_width_80 aw-dropdown ls-dropdown">
+                                <app-dropdown-grid [gridList]="ddCarrierCodes" [headers]="ddCarrierCodesHeaders"
+                                [required]="true"
+                                [displayKey]="ddCarrierCodesHeaders[2][1]"
+                                (selection)="ddCarrierCodeSelecthandler($event,ddCarrierCodesHeaders[1][1])"
+                                [selectedValue]="carrierCodeValue"
+                                [reset]="ddReset" [isEditMode]="true" [jsonField]="'carrierCode'"></app-dropdown-grid>
+                            </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Airbill:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [value]="carrierModel.airBillNumber"
+                                (modelChange)="airBillChangehandler($event)" [isEditMode]="true" [jsonField]="'airBillNumber'"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">HAWB:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [value]="carrierModel.hawbNumber"
+                                (modelChange)="hawbChangehandler($event)" [isEditMode]="true" [jsonField]="'hawbNumber'"></app-input-text>
+                            </div>                            
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Actual Wt(LBS):</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'number'" [placeHolder]="''"  [value]="operationModel.weight_Actual_LB" 
+                                 [readonly]="true"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">DIM Wt(LBS):</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'number'" [placeHolder]="''" [value]="operationModel.weight_Dimensional_LB" 
+                                [readonly]="true"></app-input-text>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row field-row">
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Service Level:</label>
+                            <div class="input-text-con calc_width_80 aw-dropdown ls-dropdown">
+                            <app-dropdown-grid [gridList]="ddServiceLevels" [headers]="ddServiceLevelsHeaders"
+                                [required]="true"
+                                [displayKey]="ddServiceLevelsHeaders[0][1]"
+                                (selection)="ddServiceLevelSelecthandler($event,ddServiceLevelsHeaders[0][1])"
+                                [selectedValue]="serviceLevelValue"
+                                [reset]="ddReset1" [isEditMode]="true" [jsonField]="'carrierServiceLevelCode'"></app-dropdown-grid>
+                        </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Origin Air:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'text'" [placeHolder]="''"  [value]="operationModel.origin_Air_Code" 
+                                [readonly]="true"></app-input-text>
+                            </div>
+                        </div>                       
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Dest Air:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'text'" [placeHolder]="''"  [value]="operationModel.dest_Air_Code" 
+                                [readonly]="true"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Pieces:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'number'" [placeHolder]="''"  [value]="operationModel.pieces" 
+                                 [readonly]="true"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="d-flex width_20 paddinglr15 align-items-center">
+                            <label class="label-mandatory width_80px">Delclared Val:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'number'" [placeHolder]="''"  [value]="operationModel.declared_Value" 
+                                 [readonly]="true"></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <div class="d-flex flex-row justify-content-end btn-group-link mb10">                
+                <button class="btn btn-primary" *ngIf="isUpdate" (click)="updateItemHandler($event)">Update</button>
+                <button class="btn btn-primary" *ngIf="!isUpdate" (click)="addItemHandler($event)">Add</button>
+            </div>
+
+            <div class="table-wrapper mb10">
+                <table class="table text-center table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Edit</th>
+                            <th>Carrier Code</th>
+                            <th>Service Level</th>
+                            <th>Airbill</th>
+                            <th>HAWB</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Pieces</th>
+                            <th>Actual Wt.(LBS)</th>
+                            <th>DIM Wt.(LBS)</th>
+                            <th>Delclared Val.</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="carriersData">                        
+                        <tr  *ngFor="let item of carriersData | statusCodefilter;let i = index;">
+                            <td width="56" class="text-center"> <img src="../../../../assets/images/icon/edit.png" width="15" alt="" (click)="editItemClickHandler(item,i)"  /> </td>
+                            <td>{{(item != null)?item.carrierCode:''}}</td>
+                            <td>{{(item != null)?item.carrierServiceLevelCode:''}}</td>
+                            <td>{{(item != null)?item.airBillNumber:''}}</td>
+                            <td>{{(item != null)?item.hawbNumber:''}}</td>
+                            <td>{{(item!= null)?operationModel.origin_Air_Code:''}}</td>
+                            <td>{{(item!= null)?operationModel.dest_Air_Code:''}}</td>
+                            <td>{{(item!= null)?operationModel.pieces:''}}</td>
+                            <td>{{(item!= null)?operationModel.weight_Actual_LB:''}}</td>
+                            <td>{{(item!= null)?operationModel.weight_Dimensional_LB:''}}</td>
+                            <td>{{(item!= null)?operationModel.declared_Value:''}}</td>
+                            <td width="80" class="text-center"> <img src="../../../../assets/images/icon/delete.png"  width="15" alt=""  (click)="deleteRow(item,i)"/> </td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+    <div class="nav-con">
+        <div class="d-flex flex-row">
+            <button class="mr-auto btn btn-primary tab-w110px" (click)="closeBtnClickHandler($event)"  >Close</button>
+            <button class="ml-auto btn btn-primary tab-w110px" (click)="saveBtnClickHandler($event)">Save</button>
+        </div>
+    </div>    
+</div>

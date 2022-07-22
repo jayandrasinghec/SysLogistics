@@ -1,0 +1,142 @@
+<div class="page-container proof-delivery-container">
+    <div class="component-container mb10">
+        <div class="title-con">
+            Proof Of {{title}}
+        </div>
+        <div class="content-con padding15">
+            <div class="row field-row mb10 mob-mb0">
+                <div class="col-lg-2 col-md-4">
+                    <label class="label-nomandatory width_65px">Pieces:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'number'" [value]="routingDetailModel.pieces" (modelChange)="actualPiecesChangehandler($event)"
+                         [placeHolder]="''" [required]="true" [readonly]='shouldDisableSection || isRoutingDetailExist'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">Actual Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [value]="routingDetailModel.weight_Actual_LB" 
+                                (modelChange)="actualaWeightLBSChangehandler($event)" (focusout)="focusOutHandler($event)" 
+                                [required]="true"  [readonly]='shouldDisableSection || isRoutingDetailExist'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">Actual Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [value]="routingDetailModel.weight_Actual_KG" 
+                        (modelChange)="actualaWeightKGChangehandler($event)" [readonly]='true'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_65px">Signed By:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'text'" [placeHolder]="''" [value]="routingDetailModel.signed_Name" 
+                        (modelChange)="signed_NameChangehandler($event)" [required]="true"  [readonly]='shouldDisableSection || isRoutingDetailExist'></app-input-text>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="row">
+                        <div class="col-7 paddright0 mob-paddlr15 ">
+                            <label class="label-nomandatory width_60px">Date:</label>
+                            <!-- <div class="input-text-con calc_width_60">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [value]="routingDetailModel.signedDate" 
+                                (modelChange)="signedDateChangehandler($event)" [required]="true"  [readonly]='isRoutingDetailExist'></app-input-text>
+                            </div> -->
+                            <div class="input-text-con calc_width_60 datepicker">
+                                <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" (dateChange)="dateChangehandler($event)"
+                                  placeholder="" autocomplete="off" [class.notValid]="!isDateValid" [readonly]="shouldDisableSection || isRoutingDetailExist" [value]="getDate()"
+                                  (keydown)="dateInputhandler($event)"
+                                  (keyup.enter)="!isRoutingDetailExist && picker.open()">
+                                <mat-datepicker-toggle matSuffix [for]="!isRoutingDetailExist ? picker : ''"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </div>
+                        </div>
+                        <div class="col-5 paddleft0 mob-paddlr15 ">
+                            <label class="label-nomandatory width_40px">Time:</label>
+                            <div class="input-text-con calc_width_40">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [value]="routingDetailModel.signedTime" [valueType]="'time'"
+                                (modelChange)="signedTimeChangehandler($event)" [required]="true"  [readonly]='shouldDisableSection || isRoutingDetailExist'></app-input-text>
+                            </div>
+                        </div>  
+                    </div>
+                </div>  
+                <div class="col-lg-2 col-md-4 offset-lg-2 paddleft0 mob-paddlr15">
+                    <label class="label-nomandatory width_115px">DIM Weight(LBS):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [value]="routingDetailModel.weight_Dimensional_LB" 
+                         [readonly]='true'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 paddleft0 mob-paddlr15 ">
+                    <label class="label-nomandatory width_115px">DIM Weight(KG):</label>
+                    <div class="input-text-con calc_width_115">
+                        <app-input-text [type]="'number'" [placeHolder]="''" [value]="routingDetailModel.weight_Dimensional_KG"  
+                         [readonly]='true'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_65px">Entered On:</label>
+                    <div class="input-text-con calc_width_65">
+                        <app-input-text [type]="'text'" [placeHolder]="''"   
+                        [value]="getDisplayDate(routingDetailModel.entered_date)" [readonly]='true'></app-input-text>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <label class="label-nomandatory width_60px">Entered By:</label>
+                    <div class="input-text-con calc_width_60">
+                        <app-input-text [type]="'text'" [placeHolder]="''"  
+                        [value]="getuserName(routingDetailModel.entered_by)" [readonly]='true' ></app-input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="row flex-column flex-md-row justify-content-center delivery-thumb">
+                <div class="img-thumbnail">
+                    <img *ngIf="fileList.length==0" src="../../../../assets/images/image-placeholder.png" alt="" />
+				    
+                <div class="carousel_slide_con" *ngIf="fileList.length>0">
+
+                    <div  id="myCarousel" class="carousel_slide" data-ride="carousel">
+                        <div class="flex-column flex-md-row justify-content-center carousel-inner">
+                        <div class="thumbImage" *ngFor="let file of fileList;let i = index;">
+                            <img src="{{file.file_Data}}"   style="width:100%;">
+                        </div>
+                        </div>
+                     </div>  
+                    </div> 
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox">
+                        <input type="checkbox" [value]="routingStatusModel.isSelected" 
+                        [(ngModel)]="routingStatusModel.isSelected" 
+                        [disabled]="disableCheckBOx || this.shouldDisableSection" 
+                        (change)="checkBoxChange($event, routingStatusModel)">
+                        <span class="checkmark"></span> {{routingStatusModel.description}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-con">
+            <div class="d-flex flex-column flex-md-row">
+                    <div class="mr-auto">
+                        <button class="btn btn-primary w110px mr-3" (click)="closeBtnClickhandler($event)">Close</button>                
+                    </div>
+                    <div class="btn-group-link">
+                        <button class="btn-primary btn5" (click)="removePOPOrPODHandler($event)" 
+                            [disabled]="!isRoutingDetailExist || shouldDisableSection">Remove {{type}}</button>
+                        <button class="btn-primary btn5"
+                            [disabled]="!isRoutingDetailExist || shouldDisableSection"
+                            (click)="addImageClickHandler($event)">Add New Image</button>
+                        <button class="btn-primary btn5"
+                            [disabled]="!isRoutingDetailExist || shouldDisableSection"
+                            (click)="addImageClickHandler($event)">Delete Image</button>
+                    </div>
+                    <div class="ml-auto">
+                        <button class="btn btn-primary w110px"
+                        [disabled]="shouldDisableSection || (!isCheckBoxValueChanged && isRoutingDetailExist)"
+                        (click)="saveClickHandler($event)">Save</button>
+                    </div>
+        </div>
+    </div>
+</div>

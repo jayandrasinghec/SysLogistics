@@ -1,0 +1,121 @@
+<div class="component-container mb0">
+    <div class="content-con nopadding">
+        <div class="table-wrapper mb10">
+            <table class="table text-center table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Carrier Code</th>
+                        <th>Service Level</th>
+                        <th> Airbill</th>
+                        <th>HAWB</th>
+                        <th> Origin</th>
+                        <th>Destination</th>
+                        <th> Pieces</th>
+                        <th> Actual Wt.</th>
+                        <th> DIM Wt.</th>
+                        <th>Declared Val.</th>
+                    </tr>
+                </thead>
+                  <tbody *ngIf="arrCarriersList && arrCarriersList.length > 0">
+                    <tr *ngFor="let row of arrCarriersList;let i= index;">
+                        <td>{{row.carrier_Code}}</td>
+                        <td>{{row.carrier_Service_Level_Code}}</td>
+                        <td>{{row.airBill_Number}}</td>
+                        <td>{{row.hawb_No}}</td>
+                        <td>{{row.origin_Air_Code}}</td>
+                        <td>{{row.dest_Air_Code}}</td>
+                        <td>{{row.pieces}}</td>
+                        <td>{{row.weight_Actual_LB}}</td>
+                        <td>{{row.weight_Dimensional_LB}}</td>
+                        <td>{{row.declared_Value}}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="table-wrapper mb10 min_height_200">
+            <table class="table text-center table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Input By</th>
+                        <th width="60%">Comment</th>
+                        <th>Add Comments</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="arrComments && arrComments.length > 0">
+                    <tr *ngFor="let row of arrComments;let i = index;">
+                        <td>{{getFormattedDate(row.created_date)}}</td>
+                        <td>{{getFormattedTime(row.created_date)}}</td>
+                        <td>{{getuserName(row.created_by)}}</td>
+                        <td>
+                            <span *ngIf="!row.isEdit" class="comment" >
+                                {{row.comment}}
+                            </span>                             
+
+                             <app-textarea *ngIf="row.isEdit"
+                             [height]="" 
+                             [class]="''"
+                             [value]="row.comment"
+                             (modelChange)="commentChangehandler(row,$event)"
+                             (focusOutEvent)="focusOutFunction(row,i)"
+                             [isEditMode]="true"
+                             [jsonField]="'comment'"></app-textarea>
+                        </td>
+                        <td>
+                            <span [ngClass]="(!row.isEdit && row.statusCode == 'I'  || !row.isEdit &&row.canEdit) ? 'enable-edit' : 'disable-edit' " (click)="editCommentClickHandler(row,i)">
+                                <img src="../../../../assets/images/icon/edit.png" alt="" />
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--
+        <div class="field-row mb10">
+            <label class="label-nomandatory width_50px noteTxt">Notes:</label>
+            <div class="input-text-con notes-con calc_width_50">
+                <textarea placeholder=""></textarea>
+            </div>
+        </div>
+        -->
+        <div class="d-flex flex-column flex-md-row button-checkbox-group mb0">
+            <div class="btn-group-link width-auto">
+                <button class="btn btn-primary" (click)='actualWeightClickHandler($event)'>Pieces & Weight</button>
+                <button class="btn btn-primary" (click)='addDimsClickHandler($event)'>Add DIMS</button>
+                <button class="btn btn-primary" (click)='specialChargesClickHandler($event)'>Special Charges</button>
+                 <button class="btn btn-primary" (click)='alertClickHandler($event)'>Alerts</button>
+                <button class="btn btn-primary" (click)='labelClickHandler($event)'>Labels</button>
+                <button class="btn btn-primary" 
+                [class.detail]="isEditPOD && routingDetailStatus =='D'"
+                [class.attachment]="isEditPOD && routingDetailStatus =='A'" 
+                (click)="proofOfDeliveryClickHandler($event)" 
+                [disabled]="!isEditPOD">POD</button>
+                <button class="btn btn-primary" (click)="changeAgentClickHandler($event)">Change Agent</button>
+            </div>
+            <!-- <div class="ml-auto checkbox-group">
+                <label class="checkbox">
+                    <input type="checkbox"><span class="checkmark"></span> Delivery Scheduled
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"><span class="checkmark"></span> On Hand Holding
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"><span class="checkmark"></span> Out For Delivery
+                </label>
+            </div> -->
+            <div class="d-flex flex-column flex-sm-row align-items-center ml-auto checkbox-group">
+                <div class="checkbox-list" *ngFor="let routingStatus of deliveryRoutingStatuses;let i= index">
+                    <label class="checkbox">
+                        <input type="checkbox" [value]="routingStatus.isSelected" [(ngModel)]="routingStatus.isSelected" 
+                        [disabled]="routingStatus.isEditable" (change)="checkBoxChange($event, routingStatus)">
+                        <span class="checkmark"></span> {{routingStatus.description}}
+                    </label>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+</div>
+ 

@@ -1,0 +1,79 @@
+<div class="page-container">    
+    <div class="component-container mb10">
+        <div class="title-con">Service Failure</div>
+        <div class="content-con padding15">
+            <div class="component-container mb10 grey-bg">
+                <div class="title-con">
+                    <div class="radio-btn-group nomargin">
+                        <div class="radiobtn-option-con ml0">
+                            <label class="radio-btn-option"><input name="radio" type="radio"><span
+                                    class="checkmark"></span> Pickup</label>
+                        </div>
+                        <div class="radiobtn-option-con">
+                            <label class="radio-btn-option"><input name="radio" type="radio"><span
+                                    class="checkmark"></span> Delivery</label>
+                        </div>
+                        <div class="radiobtn-option-con">
+                            <label class="radio-btn-option"><input name="radio" type="radio"><span
+                                    class="checkmark"></span> Airbill/Linehaul</label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-con">
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_40px">Agent:</label>
+                            <div class="input-text-con calc_width_40">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_80px">Customer:</label>
+                            <div class="input-text-con calc_width_80">
+                                <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_40px">Carrier:</label>
+                            <div class="input-text-con calc_width_40">
+                                <app-dropdown [options]="" ></app-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_80px">Failure Type:</label>
+                            <div class="input-text-con calc_width_80">
+                                <div class="radio-btn-group nomargin">
+                                    <div class="radiobtn-option-con ml0">
+                                        <label class="radio-btn-option"><input name="radio" type="radio"><span
+                                                class="checkmark"></span> Exception</label>
+                                    </div>
+                                    <div class="radiobtn-option-con">
+                                        <label class="radio-btn-option"><input name="radio" type="radio"><span
+                                                class="checkmark"></span> Failure</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb7">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_40px">Notes:</label>
+                            <div class="input-text-con calc_width_40">
+                               <textarea></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex btn-group-link">
+                <button class="btn btn-primary">Browse</button>
+                <button class="btn btn-primary">Save</button>
+                <button class="ml-auto btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

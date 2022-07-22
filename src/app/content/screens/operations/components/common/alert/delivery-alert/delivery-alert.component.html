@@ -1,0 +1,218 @@
+<div class="content-con padding15" *ngIf="formModel" >
+            <div class="row section-con">
+                <div class="col-md-12">
+                    <div class="component-container domestic-component grey-bg">
+                        <div class="title-con">Title</div>
+                        <div class="content-con padding15">
+                            <div class="row field-row md-mb0">
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Shipper:</label>
+                                    <div class="input-text-con calc_width_90">
+                                        <app-input-text [type]="'text'" [placeHolder]="'537880'" [required]="true" [value]="order.shipper_Name" [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Origin Airport:</label>
+                                    <div class="input-text-con calc_width_90">
+                                        <app-input-text [type]="'text'" [placeHolder]="'SEA'" [required]="true" [value]="order.origin_Air_Code" [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Consignee:</label>
+                                    <div class="input-text-con calc_width_90">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [required]="true"  [value]="order.consignee_Name"  [readonly]="true" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Dest Airport:</label>
+                                    <div class="input-text-con calc_width_90">
+                                        <app-input-text [type]="'text'" [placeHolder]="'BCN'" [required]="true" [value]="order.dest_Air_Code" [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Agent Name:</label>
+                                    <div class="input-text-con calc_width_90">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [readonly]="true" [value]="delivery_Agent_Name" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Phone:</label>
+                                    <div class="input-text-con calc_width_90">
+                                         <app-phone-number [type]="'mobile'"  
+                                         [required]="true"
+                                        [value]="(formModel && formModel.phone_Number)? formModel.phone_Number:''" 
+                                        (modelChange)="changeModel($event,'phone_Number')"
+										 [placeHolder]="''"  [isEditMode]="isEditMode" [jsonField]="'phone_Number'"></app-phone-number>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Fax:</label>
+                                    <div class="input-text-con calc_width_90">
+                                      <app-phone-number [type]="'mobile'" [placeHolder]="''" [value]="formModel.fax_Number" 
+									  (modelChange)="changeModel($event,'fax_Number')" [isEditMode]="isEditMode" [jsonField]="'fax_Number'">
+                                        </app-phone-number>    
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <label class="label-nomandatory width_90px">Carrier Name:</label>
+                                    <div class="input-text-con calc_width_90">
+                                      <!--  <app-input-text [type]="'text'" [placeHolder]="''" [value]="" [required]="true" [readonly]="true">
+                                        </app-input-text>-->
+                                          <app-dropdown-grid [gridList]="carriersList" [headers]="ddCarriersHeaders"
+                                            [required]="true"
+                                            [displayKey]="ddCarriersHeaders[1][1]"
+                                            (selection)="ddCarrierSelecthandler($event)"
+                                            [selectedValue]="selectedCarrier"
+                                            [isEditMode]="isEditMode"
+                                            [jsonField]="'carrier_Name'"
+                                            ></app-dropdown-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row section-con">
+                <div class="col-md-12  mob-paddlr15 mob-mb10">
+                    <div class="component-container alert-option-container grey-bg">
+                        <div class="title-con">Alert Option</div>
+                        <div class="content-con padding15">
+                            <div class="radio-btn-group nomargin">
+                                <div class="radiobtn-option-con" *ngFor="let option of alertOptions">
+                                   <label class="radio-btn-option">
+                                        <input name="options" type="radio" value="{{option}}" [checked]="formModel.alert_Option== option.alert_Option"    
+										[disabled]="!is_Editable_AlertOption"
+										(change)="alertOptionChange(option)">
+                                        <span class="checkmark"  [class.validation_error]="isSubmit && formModel.alert_Option == null"></span>{{option.alert_Option_Description}} </label>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           <!-- <div class="col-md-3 paddleft5 mob-paddlr15 mob-mb10">
+                    <div class="section-con h100">
+                        <div *ngIf="type == 'PU'" class="component-container consign-component grey-bg">
+                            <div class="title-con">Known Shipper</div>
+                            <div class="content-con padding15">
+                                <div class="radio-btn-group nomargin">
+                                    <div class="radiobtn-option-con">
+                                        <label class="radio-btn-option">
+                                            <input   type="radio"  name="knownShipper" value="true" 
+                                             [checked]="formModel.known_Shipper==true" (change)="knownShipperChange($event)"><span
+                                                class="checkmark"></span>Yes</label>
+                                    </div>
+                                    <div class="radiobtn-option-con">
+                                        <label class="radio-btn-option">
+                                            <input  type="radio"  name="knownShipper" value="false" 
+                                             [checked]="formModel.known_Shipper==false" (change)="knownShipperChange($event)" >
+                                            <span class="checkmark"></span>No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="row section-con">
+                <div class="col-md-12  mob-paddlr15 mob-mb10">
+                    <div  class="component-container grey-bg">
+                        <div class="title-con"> 
+                            <div class="d-inline-block width_110px">Declared Value</div>
+                            <div class="d-inline-block cal_width_110 checkbox-group">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="include" value="1" [(ngModel)]="formModel.include_Declared_Value" [disabled]="!is_Editable_IncludeDeclaredValue" ><span class="checkmark"></span> Include Declared Value 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="content-con padding15">
+                            <div class="row field-row">
+                                <div class="col-md-6">
+                                    <label class="label-nomandatory width_90px">Actual Declared Value:</label>
+                                    <div class="input-text-con calc_width_90">
+                                         <app-input-dollar                                             
+                                            [required]="true"  [readonly]="true" [value]="order.declared_Value"
+                                            [placeHolder]="''"></app-input-dollar>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="label-nomandatory width_90px">Cross Declared Value:</label>
+                                    <div class="input-text-con calc_width_90">
+                                         
+                                        <app-input-dollar                                             
+                                            [required]="true"  
+                                            [value]="formModel.cross_Declared_Value"
+                                            (modelChange)="changeModel($event,'cross_Declared_Value')"
+                                            [isEditMode]="isEditMode"
+                                            [jsonField]="'cross_Declared_Value'"
+                                            [placeHolder]="''"></app-input-dollar>     
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           <!-- <div class="col-md-3 paddleft5 mob-paddlr15">
+                    <div class="section-con h100">
+                        <div *ngIf="type == 'PU'" class="component-container consign-component grey-bg">
+                            <div class="title-con">Must Check ID</div>
+                            <div class="content-con padding15">
+                                <div class="radio-btn-group nomargin">
+                                    <div class="radiobtn-option-con">
+                                        <label class="radio-btn-option"><input name="mustCheckID" type="radio"  value="true"
+                                         [checked]="formModel.must_Check_ID == true" (change)="mustCheckIdChanged($event)" ><span
+                                                class="checkmark"></span>Yes</label>
+                                    </div>
+                                    <div class="radiobtn-option-con">
+                                        <label class="radio-btn-option"><input name="mustCheckID" type="radio" value="false" 
+                                        [checked]="formModel.must_Check_ID == false"  (change)="mustCheckIdChanged($event)"><span
+                                                class="checkmark"></span>No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  -->              
+ </div>
+ <div class="section-con">
+                <div class="row field-row">
+                    <div class="col-md-12">
+                        <label class="label-nomandatory width_105px">Special Instructions:</label>
+                        <div class="input-text-con calc_width_105">
+
+                            <app-textarea [height]="" 
+                                        [class]="(isSubmit && (formModel.special_Instruction == null || formModel.special_Instruction == '')) ? 'validation_error' : ''"
+                                        [value]="formModel.special_Instruction"
+                                        (modelChange)="instructionChangehandler($event)"
+                                        [isEditMode]="isEditMode"
+                                        [jsonField]="'special_Instruction'"></app-textarea>
+                        </div>
+                    </div>
+                </div>
+ </div>
+ <div class="nav-con">
+                <div class="btn-group-link">
+                    <div class="d-flex flex-column flex-md-row justify-content-center">
+                        <div class="mr-auto"> <button class="btn btn-primary"  (click)="closeBtnClickhandler($event)"  >Close</button></div>
+                        <div class="width-auto">
+                            <button class="btn btn-primary" (click)="previewBtnClickhandler($event)">Preview Alert Sheet</button>
+                            <button class="btn btn-primary" (click)="emailBtnClickhandler($event)">Email Alert Sheet</button>
+                            <button class="btn btn-primary" [disabled]="editDisabled" (click)="editBtnClickhandler($event)">Edit</button>
+                        </div>
+                        <div class="ml-auto">
+                             <button class="btn btn-primary" *ngIf="!isUpdate" (click)="saveBtnClickhandler($event)">Save</button>
+                             <button class="btn btn-primary" *ngIf="isUpdate" [disabled]="!isEditMode" (click)="updateBtnClickhandler($event)">Update</button>     
+                        </div>
+                        
+                    </div>
+                </div>
+</div>

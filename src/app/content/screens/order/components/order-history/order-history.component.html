@@ -1,0 +1,41 @@
+<!--<app-ribbon ></app-ribbon>-->
+<div class="page-container sp-component-container order-history mt10" *ngIf="orderHistory">
+    <div class="sp-component-container-inner auto-height">
+        <div class="max-w1100 margin_auto">
+                <h4 class="title">Order History</h4>
+                <div class="table-wrapper">
+                    <table class="table table-striped table-bordered table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="paddleft40">Field</th>
+                                <th class="paddleft40">From </th>
+                                <th class="paddleft40">To </th>
+                                <th class="paddleft40">Date</th>
+                                <th class="paddleft40">Time</th>
+                                <th class="paddleft40">By</th>
+                            </tr>
+                        </thead>
+                        <perfect-scrollbar style="max-height: 400px;" [scrollIndicators]>
+                            <tbody style=" max-height: 400px;">
+                                <tr *ngFor="let row of orderHistory;let i= index;">
+                                    <td class="paddleft40">{{row.field_name}}</td>
+                                    <td class="paddleft40">{{row.change_from==null ? '' :  row.change_from}}</td>
+                                    <td class="paddleft40">{{row.change_to}}</td>
+                                    <td class="paddleft40">{{getDate(row.modified_date)}} </td>
+                                    <td class="paddleft40">{{getTime(row.modified_date)}} </td>
+                                    <td class="paddleft40">{{userName}}</td>
+                                </tr>
+        
+                            </tbody>
+                        </perfect-scrollbar>
+                    </table>
+                </div>
+        </div>
+        
+        <div class="nav-con  max-w1100 margin_auto">
+            <div class="d-flex flex-row">
+                <button class="btn btn-primary ml-auto tab-w110px" type="button" (click)="closeBtnClickHandler($event)">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

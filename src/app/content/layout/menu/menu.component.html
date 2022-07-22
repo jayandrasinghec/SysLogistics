@@ -1,0 +1,33 @@
+<!-- BEGIN: Header -->
+<header>
+    <div class="navbar" [ngClass]="{'active': isSideBarActive}">
+        <div class="left-content">
+            <ul class="menubar">
+                <li (click)="displayHandler($event, 'dashboard')"><span><img src="../../../../../assets/images/icon/booking.png" alt=""></span>Booking </li>
+                <li  (click)="displayHandler($event, 'operations')"><span><img src="../../../../../assets/images/icon/operations.png" alt=""></span>Operations </li>
+                <li><span><img src="../../../../../assets/images/icon/rating.png" alt=""></span>Rating </li>
+                <li><span><img src="../../../../../assets/images/icon/reports.png" alt=""></span>Reports </li>
+                <li><span><img src="../../../../../assets/images/icon/accounting.png" alt=""></span>Accounting </li>
+                <li class="link" (click)="signoutClickHandler($event)"><span><img src="../../../../../assets/images/icon/logout.png" alt=""></span> Sign out</li>
+            </ul>
+            <div class="togglesideBar" (click)="togglesideBar()" [ngClass]="{'active': isSideBarActive}">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+            </div>
+        </div>
+        <div class="right-content ml-auto">
+            <div class="form-group">
+                <label>Search:</label>
+                <div class="search-box">
+                    <img src="../../../../assets/images/icon/search.png" alt="">
+                    <input type="text" placeholder="Enter Order #"
+                    (keyup.enter)="searchOrderhandler($event)"
+                    >
+                </div>
+                <span class="link" (click)="signoutClickHandler($event)">Sign out</span>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- END: Header -->

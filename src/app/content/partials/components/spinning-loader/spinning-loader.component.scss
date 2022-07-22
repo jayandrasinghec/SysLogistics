@@ -1,0 +1,9 @@
+.loader_popup{
+    position: static;
+    background: transparent;
+    overflow: hidden;
+    box-shadow: none;
+    .mat-dialog-container{
+      background: transparent;
+    }
+}

@@ -1,0 +1,20 @@
+.description-label {
+    vertical-align: top;
+    padding-top: 10px;
+}
+.update_btn {
+    max-width: 100px;
+}
+    
+@media screen and (max-width:767px) {
+    .table-wrapper {
+        overflow-x: auto;
+        table {
+            width: 1024px;
+        }
+    }
+    .description-label {
+        padding-top: 0;
+    }
+    
+}

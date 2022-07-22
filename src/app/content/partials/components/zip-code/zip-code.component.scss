@@ -1,0 +1,35 @@
+.zip-con {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	.zip-label {
+		color: #414449;
+		font-weight: bold;
+		width: 60px;
+	}
+	.input-text-con {
+		width: calc(100% - 60px) !important;
+		display: flex !important;
+		align-items: center;
+	}
+	.iptext1,
+	.iptext2 {
+		width: 50%;
+	}
+	.line {
+		width: 10px;
+		height: 1px;
+		background: #8f9bb3;
+	}
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		.zip-label {
+			width: 55px;
+		}
+		.input-text-con {
+			width: calc(100% - 55px) !important;
+		}
+	}
+}

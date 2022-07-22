@@ -1,0 +1,35 @@
+<div class="tab-item-container">
+  <div class="row section-con">
+      <div class="col-lg-6 paddright5">
+            <app-address [title]="'Origin'"
+                         [isEditMode]="isEditMode"
+                         [isEditUrl]="isEditUrl"
+                         [label]="'Load'"
+                         [type]="'Shipper'"
+                         [addressModel]="model"
+                         [ddshowCodes]="ddshowCodes"
+                         [ddKsmsCategories]="ddKsmsCategories"
+                         [ddTimeOptions]="ddTimeOptions"
+                         (addressModelChange)="modelChangehandler($event)"
+                         (chargesButtonClick)="chargesButtonClickHandler($event)" ></app-address>
+      </div>
+      <div class="col-lg-6 destination-content paddleft5">
+            <app-address [title]="'Destination'"
+                         [isEditMode]="isEditMode"
+                         [isEditUrl]="isEditUrl"
+                         [label]="'Del'"
+                         [type]="'Consignee'"
+                         [addressModel]="model"
+                         [ddshowCodes]="ddshowCodes"
+                         [ddKsmsCategories]="ddKsmsCategories"
+                         [ddTimeOptions]="ddTimeOptions"
+                         (addressModelChange)="modelChangehandler($event)"
+                         (chargesButtonClick)="chargesButtonClickHandler($event)"></app-address>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 freight-con">
+          <app-freight [freightModel]="model" [isEditUrl]="isEditUrl" [isEditMode]="isEditMode" [ddServiceLevels]="ddServiceLevels" (freightModelChange)="modelChangehandler($event)" (calcDimensionClick)="calcDimensionClickHandler($event)" (viewDimensionClick)="viewDimensionClickHandler($event)"></app-freight>
+      </div>
+  </div>
+</div>

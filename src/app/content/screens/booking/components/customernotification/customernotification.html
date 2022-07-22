@@ -1,0 +1,123 @@
+<div class="page-container customer-page nopadding">
+		<!-- <div class="row"> -->
+			<!-- <div class="col-md-6 left-content paddright5"> -->
+				<div class="component-container">				 
+					<div class="title-con"> General Information</div>
+					<div class="content-con">
+						<div class="row field-row">
+								<div class="col-md-12" *ngFor="let customerNotify of customerNotification;let i= index">
+									<label class="checkbox">
+										<input type="checkbox" [(ngModel)]="model.notifyCustomer" [disabled]="!is_Editable_NotifyCustomer" (change)="notifyCustomerCheckBoxChange($event, model.notifyCustomer)"><span class="checkmark"></span>
+											{{ customerNotify.description }}
+									</label>
+								</div>
+						</div>
+						<div class="row field-row align-items-center">
+							<div class="col-md-6 col-sm-6 d-flex flex-column flex-md-row align-items-center">
+								<label class="label-mandatory width_80px">Attention<span class="asterisk">*</span>:</label>
+								<div class="input-text-con calc_width_80">
+									<app-input-text [type]="'text'" (modelChange)="modelChange($event,'attention')" [isEditMode]="isEditMode && isNotifyCustomer== true "
+													[value]='model.attention' [placeHolder]="''" [setFocus]="true" [jsonField]="'attention'"
+													></app-input-text>
+								</div>
+							 </div>
+						 </div>
+						<!-- <div class="row field-row"> -->
+						<div class="row field-row align-items-center">
+							<div class="col-md-6 col-sm-6 d-flex flex-column flex-md-row align-items-center">
+								<label class="label-mandatory width_80px">Client Email<span class="asterisk">*</span>:</label>
+								<div class="input-text-con calc_width_80">
+									<app-input-text [type]="'email'" (modelChange)="modelChange($event,'email')" [isEditMode]="isEditMode && isNotifyCustomer== true "
+									[value]='model.email' [placeHolder]="''" [jsonField]="'email'"></app-input-text>
+								</div>
+							</div>
+						</div>
+						<div class="row field-row customer-order-status">
+							<div class="col-md-6">
+								<div class="radio-btn-group" *ngFor="let generalNotify of generalNotifications;let i= index">
+									<div *ngIf="generalNotify.displayType=='Radio'  && i <= 5" class="radiobtn-option-con"><label class="radio-btn-option">
+										<input [ngModel]="model.notificationCode" name="radio" type="radio" [disabled]="!is_Editable_NotificationCode || !isNotifyCustomer" (click)="handleRadioClick(generalNotify.notificationCode)" [value]="generalNotify.notificationCode">
+											<span class="checkmark"></span> {{generalNotify.description}} </label>
+									</div>
+								</div>
+							</div>
+							<div class="divider--verticle-left col-md-6">
+									<div class="radio-btn-group" *ngFor="let generalNotify of generalNotifications;let i= index">
+											<div *ngIf="generalNotify.displayType=='Radio' && i > 5" class="radiobtn-option-con"><label class="radio-btn-option">
+												<input [ngModel]="model.notificationCode" name="radio" type="radio" [disabled]="!is_Editable_NotificationCode || !isNotifyCustomer" (click)="handleRadioClick(generalNotify.notificationCode)" [value]="generalNotify.notificationCode">
+													<span class="checkmark"></span> {{generalNotify.description}} </label>
+											</div>
+										</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div *ngFor="let generalNotify of generalNotifications;let i= index" class="email-notification">
+										<div *ngIf="generalNotify.displayType=='Checkbox'" >
+											<label class="checkbox">
+												<input type="checkbox" [value]="model.invoiceFlag" [(ngModel)]="model.invoiceFlag" [disabled]="!is_Editable_InvoiceFlag || !isNotifyCustomer" (change)="checkBoxChange($event)">
+												<span class="checkmark"></span>{{generalNotify.description}}</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+			<div class="row section-con">
+			<div class="col-xl-6 col-md-12 paddright5">
+				<div class="component-container" >
+						<div class="title-con">Pickup Reminder Notification </div>
+						<div class="content-con">
+							<div class="row field-row">
+								<div class="col-md-6" *ngFor="let pickupNotify of pickupReminderNotification;let i= index">
+									<label class="checkbox">
+										<input type="checkbox" [(ngModel)]="model.pickupReminder" [disabled]="!is_Editable_PickupReminder" (change)="checkBoxChange($event)">
+										<span class="checkmark"></span>
+											{{ pickupNotify.description }}
+									</label>
+								</div>
+								<div class="col-md-6 d-flex flex-column flex-md-row align-items-center ">
+										<label class="label-mandatory width_95px">Reminder Email:</label>
+										<div class="input-text-con calc_width_95">
+											<app-input-text [type]="'text'" (modelChange)="modelChange($event,'pickupReminderEmail')" [isEditMode]="isEditMode"
+											[value]='model.pickupReminderEmail' [placeHolder]="''" [jsonField]="'pickupReminderEmail'"></app-input-text>
+								</div>
+							</div>
+						</div>
+					</div></div>
+			</div>
+			<div class="col-xl-6 col-md-12 paddleft5">
+				<div class="component-container">
+					<div class="title-con"> Booking Agent Notification</div>
+					<div class="content-con">
+						<div class="row field-row">
+							<div class="col-md-12" *ngFor="let bookingNotify of bookingAgentNotification;let i= index">
+								<label class="checkbox">
+									<input type="checkbox" [(ngModel)]="model.notifyBookingAgent" [disabled]="!is_Editable_NotifyBookingAgent" (change)="notifyAgentCheckBoxChange($event, model.notifyBookingAgent)">
+										<span class="checkmark"></span> {{ bookingNotify.description }}
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- <div class="component-container" >
+					<div class="title-con">Customer Notification </div>
+					<div class="content-con">
+						<div class="row field-row">
+							<div class="col-md-12" *ngFor="let customerNotify of customerNotification;let i= index">
+								<label class="checkbox">
+									<input type="checkbox" [(ngModel)]="model.notifyCustomer" [disabled]="isEditMode" (change)="checkBoxChange($event)"><span class="checkmark"></span>
+										{{ customerNotify.description }}
+								</label>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+			</div>
+		<!-- </div> -->
+	</div>
+	

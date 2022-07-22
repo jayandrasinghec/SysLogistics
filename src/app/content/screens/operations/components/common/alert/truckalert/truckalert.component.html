@@ -1,0 +1,248 @@
+  <div class="content-con padding15"  >
+            <div class="row section-con">
+                <div class="col-md-6 paddright5 mob-paddlr15 mob-mb10">
+                    <div class="component-container grey-bg">
+                        <div class="title-con">Origin</div>
+                        <div class="content-con padding15">
+                            <div class="row field-row mb0">
+                                <div class="col-md-12  mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Origin:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [value]="order.origin_Air_Code" 
+                                         [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Address:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [value]="order.shipper_Address1"
+                                        [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px m-hide">&nbsp;</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [value]="order.shipper_Address2" 
+                                        [readonly]="true">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">City:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                                         [value]="order.shipper_City">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 nopadding mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">State:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true"
+                                         [value]="order.shipper_State">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 paddleft0 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">zip:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" 
+                                        [readonly]="true" [value]="order.shipper_Zip" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Date:</label>
+                                     <div class="input-text-con calc_width_85 datepicker">
+                                        <input matInput [matDatepicker]="picker" [min]="minDate" (dateChange)="dateChangehandler($event,'load_Date')"
+                                            placeholder="" [class.notValid]="!isLoadDateValid" [readonly]="!isDeliver_date_Editable" [value]="formModel.load_Date"
+                                            (keyup.enter)="!isEditMode && picker.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode && isDeliver_date_Editable ? picker : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 nopadding time-con mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">Time From:</label>
+                                    <div class="input-text-con calc_width_40">
+                                       <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+                                                    [value]="formModel.load_Time_From" [jsonField]="'load_Time_From'"
+                                                    (modelChange)="timeFromChangehandler($event,'load_Time_From')" [isEditMode]="isEditMode">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                 <div class="col-lg-3 col-md-3  paddleft0 time-con mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">Time To:</label>
+                                    <div class="input-text-con calc_width_40">
+                                       <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+                                                    [value]="formModel.load_Time_To"
+                                                    (modelChange)="timeFromChangehandler($event,'load_Time_To')"
+                                                    [jsonField]="'load_Time_To'"
+                                                    [isEditMode]="isEditMode">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-12">
+                                    <label class="label-nomandatory width_65px">Contact Name:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" 
+                                            [value]="order.shipper_Attention">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 paddleft0">
+                                    <label class="label-nomandatory width_40px">Booth:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" 
+                                        [value]="order.origin_Booth" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 paddleft5 mob-paddlr15">
+                    <div class="component-container grey-bg">
+                        <div class="title-con">Destination</div>
+                        <div class="content-con padding15">
+                            <div class="row field-row mb0">
+                                <div class="col-md-12  mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Destination:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.dest_Air_Code" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Address:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_Address1" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px m-hide">&nbsp;</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_Address2" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">City:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_City" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 nopadding mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">State:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_State" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 paddleft0 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">zip:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_Zip" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-6 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Date:</label>
+                                   <div class="input-text-con calc_width_85 datepicker">
+                                        <input matInput [matDatepicker]="picker1" [min]="minDate" (dateChange)="dateChangehandler($event,'delivery_Date')"
+                                            placeholder="" [class.notValid]="!isDelDateValid" [readonly]="!isLoad_date_Editable" [value]="formModel.delivery_Date"
+                                            (keyup.enter)="!isEditMode && picker1.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="isEditMode && isLoad_date_Editable  ? picker1 : ''"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                        </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 nopadding time-con mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">Time from:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+                                                    [value]="formModel.delivery_Time_From" [jsonField]="'delivery_Time_From'"
+                                                    (modelChange)="timeFromChangehandler($event,'delivery_Time_From')" [isEditMode]="isEditMode">
+                                        </app-input-text>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 paddleft0 time-con mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">Time To:</label>
+                                    <div class="input-text-con calc_width_40">
+                                         <app-input-text [type]="'text'" [placeHolder]="''" [required]="true" [valueType]="'time'"
+                                                    [value]="formModel.delivery_Time_To" [jsonField]="'delivery_Time_To'"
+                                                    (modelChange)="timeToChangehandler($event,'delivery_Time_To')" [isEditMode]="isEditMode">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-12 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_65px">Contact Name:</label>
+                                    <div class="input-text-con calc_width_65">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.consignee_Attention" >
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 paddleft0 mb10 mob-mb0">
+                                    <label class="label-nomandatory width_40px">Booth:</label>
+                                    <div class="input-text-con calc_width_40">
+                                        <app-input-text [type]="'text'" [placeHolder]="''" [readonly]="true" [value]="order.dest_Booth">
+                                        </app-input-text>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-con mb0">
+                <div class="row field-row">
+                    <div class="col-md-12">
+                        <label class="label-nomandatory width_80px">Pickup Instructions:</label>
+                        <div class="input-text-con calc_width_80 mb10 mob-mb0">
+                            <app-textarea [value]="formModel.pickup_Comment"
+                                  (modelChange)="commentChangeHander($event, 'pickup_Comment')"
+                                  [class]="!puCommentValid ? 'validation_error' : ''"
+                                   [readonly]="!isEditMode" [jsonField]="'pickup_Comment'">
+                            </app-textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row field-row mb10">
+                    <div class="col-md-12">
+                        <label class="label-nomandatory width_80px">Delivery Instructions:</label>
+                        <div class="input-text-con calc_width_80">
+                            <app-textarea [value]="formModel.delivery_Comment"
+                                    (modelChange)="commentChangeHander($event, 'delivery_Comment')"
+                                   [class]="!delCommentValid ? 'validation_error' : ''"
+                                   [readonly]="!isEditMode" [jsonField]="'delivery_Comment'">
+                            </app-textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group-link d-flex flex-row">
+                <div class="mr-auto width-auto"> <button class="btn btn-primary" (click)="closeBtnClickHandler($event)">Close</button></div>
+                <div class="mr-auto width-auto"> <button class="btn btn-primary">Preview Alert Sheet</button></div>
+                <div class="mr-auto width-auto"> <button class="btn btn-primary">Email Alert Sheet</button></div>
+                <div class="mr-auto width-auto"> <button class="btn btn-primary" [disabled]="isEditMode"  (click)="editBtnClickHandler($event)">Edit</button></div>
+                <div class="width-auto"> <button class="btn btn-primary" *ngIf="!isUpdate" (click)="saveBtnClickHandler($event)">Save</button></div>
+                <div class="width-auto"> <button class="btn btn-primary" *ngIf="isUpdate" [disabled]="!isEditMode" (click)="updateBtnClickHandler($event)">Update</button></div>
+            </div>
+        </div>

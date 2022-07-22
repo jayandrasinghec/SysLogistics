@@ -1,0 +1,168 @@
+<div class="page-container">
+        
+        <div class="component-container mb10">
+                <div class="title-con">
+                <label>Service Failure</label>                   
+                </div>
+                <div class="content-con padding15">
+                    <div class="component-container mb10 grey-bg">
+                        <div class="title-con">
+                            <div class="radio-btn-group nomargin">
+                                <div class="mr-auto">
+                                    <div class="radiobtn-option-con ml0"  *ngFor="let option of arrRoutingTypes">
+                                        <label class="radio-btn-option">
+                                            <input name="sfType" [(ngModel)]="sfType" 
+                                            type="radio" [value]="option.routing_type"
+                                            [checked]="option.routing_type == sfType"
+                                            [disabled]="true" >
+                                            <span class="checkmark"></span>
+                                            {{option.description}}</label>
+                                    </div> 
+                                </div>   
+                                <div class="navbtns-con ml-auto">
+                                    <div class="navbtns"  *ngIf="serviceFailures && serviceFailures.length>1">
+                                        <button class="navLinks" [disabled]="navIndex==0" (click)="navBtnClickHandler('prev')">Previous</button>
+                                        <button class="navLinks" [disabled]="navIndex >= serviceFailures.length-1" (click)="navBtnClickHandler('next')">Next</button>
+                                     </div>
+                                </div>        
+                            </div>                            
+                        </div>
+                        <div class="content-con">
+                            <div class="row field-row">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_80px">Agent:</label>
+                                            <div class="input-text-con calc_width_80">
+                                                <app-input-text [type]="'text'" [value]="objServiceFailure.agent_Name"
+                                                    [placeHolder]="''" [isEditMode]="false" [required]="type!='SFA'"                                                     
+                                                    [jsonField]="'agent_Name'" ></app-input-text>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_80px">Customer:</label>
+                                            <div class="input-text-con calc_width_80">
+                                                <app-input-text [type]="'text'" [value]="objServiceFailure.customer_Name"
+                                                [placeHolder]="''" [isEditMode]="false" [required]="true" 
+                                                [jsonField]="'customer_Name'"></app-input-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row field-row mt10">
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_80px">Carrier:</label>
+                                            <div class="input-text-con calc_width_80">
+                                                <app-dropdown-grid [gridList]="arrCarriersList" [headers]="ddCarrierCodesHeaders"
+                                                [required]="true"
+                                                [displayKey]="ddCarrierCodesHeaders[2][1]"
+                                                (selection)="ddCarrierCodeSelecthandler($event)"
+                                                [selectedValue]="carrierCodeValue"
+                                                [reset]="ddReset" [isEditMode]="!isUpdate && isEditMode"
+                                                [jsonField]="'carrier_Code'"></app-dropdown-grid>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_80px">Carrier Code:</label>
+                                            <div class="input-text-con calc_width_80">
+                                                <app-input-text [type]="'text'" [value]="objServiceFailure.carrier_Code"
+                                                [placeHolder]="''" [isEditMode]="false" [required]="true"></app-input-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row field-row mt10">
+                                        <div class="col-md-6">
+                                            <label class="label-nomandatory width_80px">Failure Type:</label>
+                                            <div class="input-text-con calc_width_80">
+                                                <div class="radio-btn-group nomargin">
+                                                    <div class="radiobtn-option-con ml0"  *ngFor="let option of arrServiceFailureTypes">
+                                                        <label class="radio-btn-option">
+                                                            <input name="radio" [(ngModel)]="objServiceFailure.failure_Type" 
+                                                                type="radio" [value]="option.type"
+                                                                [checked]="option.type == objServiceFailure.failure_Type"
+                                                                [disabled]="isUpdate || (!isEditMode && !isUpdate)">
+                                                            <span class="checkmark"></span>
+                                                            {{option.type}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">                                             
+                                            <label class="label-nomandatory width_80px">Failure Date:</label>
+                                            <div class="input-text-con calc_width_80 datepicker">
+                                                <input matInput [matDatepicker]="picker" [min]="minDate" (dateChange)="dateChangehandler($event)"
+                                                  placeholder="" [class.notValid]="!isDateValid"  [value]="getDate()"
+                                                  [readonly] = "!is_DP_Editable || isUpdate" >
+                                                <mat-datepicker-toggle matSuffix [for]="objServiceFailure ? picker : ''"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="label-nomandatory width_40px">Notes:</label>
+                                    <div class="input-text-con calc_width_40">
+                                      
+                                        <app-input-notes [height]="100" [isEditMode]="isEditMode" 
+                                        [noteList]="failureNotes" [setFocus]="true"
+                                        [modelName]="objServiceFailure.comment" 
+                                        (modelChange)="commentChange($event)"
+                                        [class]="!commentsValid?'notValid':''" 
+                                        [jsonField]="'comment'"></app-input-notes>  
+
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="d-flex btn-group-link">
+                        <div class="ml-auto">
+                            <button class="btn-primary" [disabled]="!isEditMode" (click)="uploadImageClickHandler($event)">Upload Image</button>
+                            <!-- <button class="btn-primary" *ngIf="isUpdate" (click)="updateClickHandler($event)">Update</button>
+                            <button class="btn-primary" *ngIf="!isUpdate" (click)="addClickHandler($event)">Add</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="component-container mb10">
+        <div class="content-con padding15">          
+            <div class="table-wrapper mb10">
+                <table class="table text-center table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Time</th>
+                            <th>By</th>
+                            <th>Comments</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="serviceFailureAttachmentData">                        
+                        <tr *ngFor="let item of serviceFailureAttachmentData | statusCodefilter; let i = index;">                            
+                            <td>{{(item != null)?getFormattedDate(objServiceFailure.created_date):''}}</td>
+                            <td>{{(item != null)?item.file_name:''}}</td>
+                            <td>{{(item != null)?getFormattedTime(objServiceFailure.created_date):''}}</td>
+                            <td>{{(item != null)?getuserName(objServiceFailure.created_by):''}}</td>
+                            <td>{{(item != null)?item.comment:''}}</td>
+                            <td><a><img src="../../../../assets/images/icon/delete.png" width="15" alt=""  (click)="deleteRow(item,i)"/></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex btn-group-link">
+                 <button class="btn btn-primary" (click)="closeClickHandler($event)">Close</button>                 
+                <!-- <button class="btn btn-primary" [disabled]="disableNewBtn"  (click)="addClickHandler($event)">Add</button> -->
+                 <button class="btn btn-primary" [disabled]="!isUpdate || isEditMode"   (click)="EditClickHandler($event)" >Edit</button>              
+                
+                 <div class="ml-auto">
+                             <button class="btn btn-primary" *ngIf="!isUpdate" (click)="saveClickHandler($event)">Save</button>
+                             <button class="btn btn-primary" *ngIf="isUpdate" [disabled]="!isEditMode" (click)="updateClickHandler($event)">Update</button>
+                  </div>
+           
+           
+            </div>
+        </div>
+    </div>
+</div>

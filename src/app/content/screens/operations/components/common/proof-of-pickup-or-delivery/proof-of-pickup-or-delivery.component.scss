@@ -1,0 +1,68 @@
+.proof-delivery-container {
+    .delivery-thumb {
+        .img-thumbnail {
+            max-width: 500px;
+            margin: 0 15px;
+            max-height: 500px;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            .checkbox-group {
+                margin: 15px;
+                .checkbox {
+                    margin-bottom: 0;
+                }
+            }
+        }    
+    }
+    .col-md-4 {
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 1024px) {
+        .width_115px {
+            width: 80px;
+        }
+        .calc_width_115 {
+            width: calc(100% - 80px);
+        }
+        .width_60px {
+            width: 65px;
+        }
+        .calc_width_60 {
+            width: calc(100% - 65px);
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .col-md-4 {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.thumbImage{
+    min-width: 500px;
+    display: block;
+    overflow: hidden;
+    margin: 5px;
+    border: 1px solid #000000;
+    // float: left;
+}
+.carousel_slide_con {
+   padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    width: 500px;
+    height: 400px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    margin: auto;
+}
+.carousel_slide{
+width: max-content;
+}
+

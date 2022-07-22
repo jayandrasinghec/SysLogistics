@@ -1,0 +1,33 @@
+
+
+.destination-content {
+    .dropdown-grid-table {
+        left: auto!important;
+        right: 0;
+    }
+    @media screen and (min-width: 992px) and (max-width: 1024px) {
+        .fw-dropdown {
+            &.dropdownType {
+                #autocomplete-list {
+                    overflow: auto;
+                }
+                .dropdown-grid-table {
+                    .table-wrapper {
+                        width: 700px;
+                        overflow: auto;
+                    }
+                }  
+            }
+        }  
+    }
+    @media screen and (max-width: 991px) {
+        .fw-dropdown {
+            &.dropdownType {
+                .dropdown-grid-table {
+                    left: 0;
+                    right: auto!important;
+                }  
+            }
+        }  
+    }
+}

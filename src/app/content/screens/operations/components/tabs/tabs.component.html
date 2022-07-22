@@ -1,0 +1,59 @@
+<div class="operations-container">        
+    <div class="search-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Enter Order Number:</label>
+                    <div class="search-box">                    
+                        <img src="../../../../assets/images/icon/search.png" alt="">
+                    <input type="text" placeholder="Enter Order ID" #orderid
+                        [(ngModel)]="searchModel.orderId"
+
+                        (keyup.enter)="searchOrderHandler($event,'orderId')" >                           
+                    </div>                 
+                    <span class="link"><strong></strong>OR</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Enter Sho-Air Bill Number:</label>
+                    <div class="search-box">                    
+                        <img src="../../../../assets/images/icon/search.png" alt="">
+                    <input type="text" placeholder="Enter Sho-Air Bill Number" #airbilno
+                        [(ngModel)]="searchModel.airbillNo"
+                        (keyup.enter)="searchOrderHandler($event,'airBillNo')">
+                    </div>       
+                    <div class="d-md-inline text-right">
+                        <button class="btn-primary ml-auto" (click)="searchClickHandler($event)">Search</button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-container" *ngIf="operationModel && operationModel.order_ID">
+        <nav mat-tab-nav-bar [color]="'primary'"    >
+            <a mat-tab-link        
+            *ngFor="let tab of navTabs;let i= index"
+            (click)="tabClickhandler($event,i)"
+            routerLinkActive ="mat-tab-label-active"
+            #rla="routerLinkActive"
+            [active]="tab.isActive"
+            [disabled]="tab.isDisabled">
+            {{tab.label}}
+            </a>
+            <div class="agent_label">{{ agent_name}}</div>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div class="footer-btn-container" *ngIf="operationModel && operationModel.order_ID!=''">
+    <!--footer btns will come here-->
+    <app-operations-footer 
+    (clickEvent)="saveBtnClickhandler($event)"
+    (checkBoxEvent)="commentCBSelecthandler($event)"
+    [orderStatusModel]="orderStatusModel"
+    [routingAgents] ="routingAgents"
+    [carrierList] ="arrCarriersList"   
+    [routingNotes]="routingData"
+    ></app-operations-footer>
+</div>

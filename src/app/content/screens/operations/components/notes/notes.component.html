@@ -1,0 +1,20 @@
+<div class="tab-container" >
+    <nav mat-tab-nav-bar [color]="'primary'" mat-stretch-tabs class="example-stretched-tabs">
+        <a mat-tab-link     
+        *ngFor="let tab of navTabs;let i= index"
+        (click)="tabClickhandler($event,i)"
+        routerLinkActive ="mat-tab-label-active"
+        #rla="routerLinkActive"
+        [active]="tab.isActive"
+        [disabled]="tab.isDisabled">
+        {{tab.label}}
+        </a>
+    </nav>
+    <router-outlet></router-outlet>
+    <div class="nav-con">
+        <div class="d-flex flex-row">
+            <button class="mr-auto btn btn-primary" >Print Notes</button>
+            <button class="ml-auto btn btn-primary" (click)="closeBtnClickhandler($event)">Close</button>
+        </div>
+    </div>
+</div>

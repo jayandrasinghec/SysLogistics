@@ -1,0 +1,153 @@
+<div class="label-component">
+    <div class="component-container mb10">
+        <div class="title-con">Labels</div>
+        <div class="content-con padding15">
+            <div class="radio-btn-group mt0">
+                <div class="radiobtn-option-con ml0">
+                    <label class="radio-btn-option">
+                        <input name="options" [ngModel]="labelType" type="radio" [value]="'Container'"
+                         [checked]="labelType =='Container'" (click)="handleRadioClick('Container')"><span class="checkmark"></span> Container Labels
+                    </label>
+                </div>
+                <div class="radiobtn-option-con">
+                    <label class="radio-btn-option">
+                        <input name="options" [ngModel]="labelType" type="radio" [value]="'AWB'"
+                         [checked]="labelType =='AWB'" (click)="handleRadioClick('AWB')"><span class="checkmark"></span> AWB Labels
+                    </label>
+                </div>
+            </div>
+            <div class="component-container c_labels mt20 mb10 grey-bg max-w600 mx-auto" *ngIf="radioBtnSelected && isContainerLabel">
+                <div class="title-con">Container Labels</div>
+                <div class="content-con padding15">
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_110px">Total Pieces:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'text'" 
+                                   (modelChange)="piecesChangehandler($event)" 
+                                    [readonly]="true" 
+                                    [value]="containerModel.total_Pieces"
+                                   [placeHolder]="''" [required]="true"
+                                    
+                                   ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_110px">Container Number:</label>
+                            <div class="input-text-con calc_width_110">
+                                <app-input-text [type]="'text'" (modelChange)="containerNumChangehandler($event)" 
+                                [placeHolder]="''" [required]="true" 
+                                 [value]="containerModel.container_Number"                                  
+                                 [isEditMode]="canEditContainer"
+                                 [jsonField]="'container_Number'"
+                                 ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_110px">Label Instructions:</label>
+                            <div class="input-text-con calc_width_110">
+                             <!--   <textarea  [(ngModel)]="containerModel.label_Instructions"
+                                  [value]="containerModel.label_Instructions"
+                                   [readonly]="!canEditContainer"
+                                (input)="instructionChange($event)" 
+                                [class.error]="submitted && containerModel.label_Instructions==''"
+                                ></textarea> -->                                 
+                                <app-textarea                                  
+                                [class]="!txtAreaValid ? 'error' : ''"   
+                                [value]="containerModel.label_Instructions"                         
+                                (modelChange)="instructionChange($event)"                            
+                                [isEditMode]="canEditContainer"
+                                [jsonField]="'label_Instructions'"></app-textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group-link">
+                        <button class="btn btn-primary" (click)="previewBtnClickHandler($event)">Print Preview</button>
+                        <button class="btn btn-primary" (click)="editContainerBtnClickHandler($event)" [disabled]="containerEditDisabled?'disabled':''" >Edit</button>
+                        <button class="btn btn-primary" (click)="saveBtnClickHandler($event)">{{(!isUpdate)?'Save':'Update'}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="component-container a_labels mb10 grey-bg max-w600 mx-auto" *ngIf="radioBtnSelected && !isContainerLabel">
+                <div class="title-con">AWB Labels</div>
+                <div class="content-con padding15">
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_100px">Final Destination:</label>
+                            <div class="input-text-con calc_width_100">
+                                <app-input-text [type]="'text'" [placeHolder]="''"
+                                 [value]="awbModel.final_Destination"
+                                 [required]="true" (modelChange)="finalDestinatoinChangehandler($event)"
+                                 [readonly]="true"
+                                 ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_100px">HAWB:</label>
+                            <div class="input-text-con calc_width_100">
+                                <app-input-text [type]="'text'" [placeHolder]="''"     
+                                   [value]="awbModel.hawb_No"  
+                                    [readonly]="!canEditAWB"                          
+                                [required]="true" (modelChange)="hawbChangehandler($event)"
+                                [isEditMode]="canEditAWB"
+                                [jsonField]="'hawb_No'"></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_100px">Total Pieces:</label>
+                            <div class="input-text-con calc_width_100">
+                                <app-input-text [type]="'text'" [placeHolder]="''"
+                                 [readonly]="true"
+                                 [value]="awbModel.total_Pieces"
+                                 [required]="true"                                 
+                                 ></app-input-text>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-nomandatory width_100px">Destination:</label>
+                            <div class="input-text-con calc_width_100">
+                                <app-input-text [type]="'text'" [placeHolder]="''" 
+                                [required]="true" (modelChange)="destinationChangehandler($event)"    
+                                [value]="awbModel.destination"  
+                                [readonly]="!canEditAWB" 
+                                [isEditMode]="canEditAWB"
+                                [jsonField]="'destination'"                             
+                                ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field-row mb10 mob-mb0">
+                        <div class="col-md-12">
+                            <label class="label-nomandatory width_100px">MAWB:</label>
+                            <div class="input-text-con calc_width_100">
+                                <app-input-text [type]="'text'" [placeHolder]="''" 
+                                [required]="true" (modelChange)="mawbChangehandler($event)"    
+                                [value]="awbModel.mawb_No"      
+                                [readonly]="!canEditAWB" 
+                                [isEditMode]="canEditAWB"
+                                [jsonField]="'mawb_No'"                        
+                                ></app-input-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group-link">
+                        <button class="btn btn-primary" (click)="previewBtnClickHandler($event)">Print Preview</button>
+                        <button class="btn btn-primary" (click)="editAWBBtnClickHandler($event)" [disabled]="awbEditDisabled?'disabled':''" >Edit</button>
+                        <button class="btn btn-primary" (click)="saveBtnClickHandler($event)">{{(!isUpdate)?'Save':'Update'}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-con">
+                <div class="d-flex flex-row">
+                    <button class="ml-auto btn btn-primary"   (click)='closeClickHandler($event)'>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

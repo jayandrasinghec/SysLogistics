@@ -1,0 +1,38 @@
+<div *ngIf="orderModel" class="component-container order-title">
+  <app-ribbon 
+    [ribbonModel]="orderModel"
+    [showOrderDetails]="true">
+  </app-ribbon>
+</div>
+<div class="status-bar-container" *ngIf="orderModel">
+  <app-status-bar [progress]="progress" [description]="description"></app-status-bar>
+</div>
+<div class="billing-tab">
+      <nav mat-tab-nav-bar [color]="'primary'" mat-stretch-tabs class="example-stretched-tabs">
+        <a mat-tab-link
+
+          *ngFor="let link of navLinks;let i= index"
+          (click)="tabClickhandler($event,i)"
+          routerLinkActive ="mat-tab-label-active"
+          #rla="routerLinkActive"
+          [active]="link.isActive"
+          [disabled]="link.isDisabled">
+           {{link.label}}
+          </a>
+        </nav>
+        <router-outlet></router-outlet>
+        <app-navigation
+        [isEdit]="true"
+        [index]="activeLinkIndex"
+        [total]="navLinks.length"
+        [showPrev]="showPrevBtn"
+        [showNext]="showNextBtn"
+        [showEditBtn]="!isEditable && showEditBtn"
+        [orderBooked]="orderBooked"
+        [showSaveOrder]="showSaveOrderBtn"
+        [orderSerchMode]="true"
+        (clickEvent)="navigationClickHandler($event)" ></app-navigation>
+</div>
+
+
+

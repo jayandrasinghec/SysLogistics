@@ -1,0 +1,53 @@
+<div class="alert-component" *ngIf="arrAlertTypes && arrAlertTypes.length>0">
+    <div class="component-container">
+        <div class="title-con">
+            <div class="radio-btn-group d-flex nomargin">
+                <div class="mr-auto">
+                    <div class="radiobtn-option-con ml0"  *ngFor="let option of arrAlertTypes">
+                        <label class="radio-btn-option">
+                            <input name="alertCategory" [(ngModel)]="alertCategory" 
+                             type="radio" [value]="option.alert_Option"
+                              (change)="optionChange(option)"
+                              
+                              [checked]="option.alert_Option == alertCategory"
+                              >
+                            <span class="checkmark"></span>
+                            {{option.alert_Option_Description}}</label>
+                    </div>
+                   
+                </div>
+                 <div class="ml-auto" *ngIf="alertCategory == 'RA' && showNavBtns">
+                    <button class="navLinks" [disabled]="navIndex==0" (click)="navBtnClickHandler('prev')">Previous</button>
+                    <button class="navLinks" [disabled]="navIndex >= routingAlerts.length-1" (click)="navBtnClickHandler('next')">Next</button>
+                 </div>
+                 
+            </div>
+        </div>
+      
+    <ng-container *ngIf="alertCategory">
+		  <app-truckalert *ngIf="alertCategory == 'TA'"  [order]="orderObj" ></app-truckalert>
+		  <app-routingalert *ngIf="alertCategory == 'RA'"
+           [order]="orderObj" 
+           [carriersList]="arrCarriersList" 
+           [navIndex]="navIndex"
+           (routingAlertEvent)="showRoutingAlertNav($event)"          
+            ></app-routingalert>
+          <app-pickup-alert *ngIf="alertCategory.indexOf('PU') != -1 " 
+          [order]="orderObj"  [type]="'PU'" 
+          [alertOptions]="arrAlertOptions" 
+          [routingAgent]="routingAgent"
+          [carriersList]="arrCarriersList"
+           ></app-pickup-alert>
+          <app-delivery-alert *ngIf="alertCategory.indexOf('DEL')!= -1"
+           [order]="orderObj"  [type]="'DEL'"  
+           [alertOptions]="arrAlertOptions" 
+           [routingAgent]="routingAgent" 
+            [carriersList]="arrCarriersList"
+           ></app-delivery-alert>
+	</ng-container>
+        
+
+            
+        
+    </div>
+</div>

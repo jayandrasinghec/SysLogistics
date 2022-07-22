@@ -1,0 +1,37 @@
+.price-box {
+    margin-left: auto;
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 100px;
+    .item-con {
+        margin-right: 0;
+        .ip-con {
+            display: inline-block;
+            width: 85px;
+            margin-left: 10px;
+        }
+    }
+}
+.sp-component-container {
+  .sp-component-container-inner {
+    min-height: auto;
+  }
+}
+
+.table-wrapper {
+ 
+  .viewcharges_table{
+    tr {
+      td, th {
+        min-width: 320px;
+        @media screen and (max-width: 991px) {
+          min-width: 245px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    overflow: auto;
+  }  
+}
+

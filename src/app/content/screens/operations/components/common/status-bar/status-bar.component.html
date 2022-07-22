@@ -1,0 +1,7 @@
+<div class="slidecontainer">
+    <mat-slider min="0" max="100" step="0.5" [value]="progress" thumbLabel></mat-slider>
+     <div #statusTextContainer class="status-text-container">
+         <span [style.visibility]="description?'visible':'hidden'" #statusText class="status-text"
+            [style.left]="progressTextPosition+'%'">{{description}}</span>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<input #ipElement
+ [value]="(value)?value:''"
+ [class]="class"
+ [type]="type"
+ [attr.valueType]="valueType"
+ [placeholder]="placeHolder"
+ [required]="required"
+ [readonly]="!isEditable()"
+ [tabindex]="tabindex"
+ [attr.maxlength]="maxlength"  
+ autocomplete="nope"
+ (change)="textChange($event)"  (focusout)="focusOutFunction($event)"/> 

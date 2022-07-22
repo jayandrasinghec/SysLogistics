@@ -1,0 +1,12 @@
+<div class="zip-con">
+    <label class="zip-label">Zip<span class="asterisk" *ngIf="required">*</span>:</label>
+    <div class="input-text-con">
+        <input #ipElement1 class="iptext1" [value]="zip1()" type="text" minlength="5" maxlength="5"
+            [readonly]="readonly" [placeholder]="''" (input)="iptext1Changehandler($event)" autocomplete="nope"
+            [tabindex]="tabindex" />
+        <div class="line"></div>
+        <input #ipElement2 class="iptext2" [value]="zip2()" type="text" minlength="4" maxlength="4"
+            [readonly]="readonly" [placeholder]="''" (input)="iptext2Changehandler($event)" autocomplete="nope"
+            [tabindex]="tabindex != -1 ? tabindex + 1 : tabindex" />
+    </div>
+</div>

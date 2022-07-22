@@ -1,0 +1,6 @@
+<mat-select #ddElement required="required" [(value)]="defaultSelected" (focus)="selectFocus($event)" (blur)="selectBlur($event)" (selectionChange)="changeOptions($event)">
+    <mat-option value="select">Select</mat-option>
+    <mat-option *ngFor="let option of options;"  [value]="option">{{option}}</mat-option>
+    
+</mat-select>
+<div [ngClass]="('isEditMode') ? 'custom-carret':'custom-carret  disabled'" (click)="inputClickhandler($event)"><i  class="arrow down"></i></div>

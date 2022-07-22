@@ -1,0 +1,15 @@
+
+<div class="timer-popup">
+  <div class="component-container">
+      <div class="title-con" [innerHtml]='data.title'>
+
+      </div>
+      <div class="content-con">
+          <p [innerHtml]='data.message'  tabindex="-1"></p>
+          <p class="align-center" [innerHtml]="count+ ' :  seconds'"  tabindex="-1"></p>
+          <div class="btn-group">
+              <button *ngIf="data.type=='popup'" class="btn-primary cancel-btn" tabindex="-1" [disabled]="data.disableCancel" (click)="cancelClickHandle($event)">{{data.cancelButtonName}}</button>
+          </div>
+      </div>
+  </div>
+</div>

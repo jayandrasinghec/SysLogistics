@@ -1,0 +1,57 @@
+.nomove-status {
+    .top-content {
+        margin-bottom: 15px;
+    }
+    .field-row { 
+        margin-bottom: 15px;
+        .input-text-con {
+            display: inline-block;
+            padding-left: 10px;
+            textarea {
+                height: 85px;
+            }
+        }
+    }
+    .table-wrapper {
+        table {
+            tr {
+                th, td {
+                    &:first-child {
+                        width: 90px;
+                        .checkbox {
+                            .checkmark {
+                                left: calc(50% - 8px);
+                            }
+                        }
+                    }
+                    &:last-child {
+                        width: 100px
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 1199px) {            
+            overflow-x: auto;
+            margin-bottom: 10px;
+            table {
+                width: 1130px;
+            }
+        }
+    }
+    .error{
+        border: 1px solid red;
+    }
+    @media screen and (max-width:767px) {
+        .width_70px, .calc_width_70 {
+            text-align: left;
+            width: 100%;
+            margin-bottom: 10px!important;
+        }
+        .field-row {
+            .input-text-con {
+                padding-left: 0;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,14 @@
+.mat-tab-nav-bar {
+    .mat-tab-links {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .table-wrapper {
+        overflow-x: auto;
+        table {
+            width: 1200px;
+        }
+    }
+}

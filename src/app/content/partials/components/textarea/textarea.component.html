@@ -1,0 +1,14 @@
+<textarea #ipElement 
+[value]="(value)?value:''"
+[class]="class"
+[style.height]="height" 
+[placeholder]="(placeHolder)?placeHolder:''"
+[required]="required"
+[tabindex]="tabindex"
+autocomplete="nope" 
+[readonly]="!isEditable()" 
+[attr.maxlength]="maxlength"  
+#inputToFocus
+(change)="textChange($event)"  
+(focusout)="focusOutFunction($event)"
+(input)="textInputFunction($event)" ></textarea>   

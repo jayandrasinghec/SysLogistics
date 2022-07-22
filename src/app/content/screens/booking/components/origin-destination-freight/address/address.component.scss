@@ -1,0 +1,122 @@
+
+.address-container {   
+    .shipperTxt {
+        max-width: 55%;
+    }
+    .airportTxt {
+        max-width: 45%;
+        flex: 0 0 45%;
+        select {
+            padding-right: 0;
+        }
+    }
+    .ksmsTxt {
+        padding-left: calc(5% + 10px);
+    }
+    .dateTxt {
+        max-width: 30%;
+        flex-basis: auto;
+    }
+    .dateSelect {
+        max-width: 20%;
+        padding: 0 10px 0px 10px!important;
+
+    }
+    .notValid{
+        border: 1px solid red;
+    }
+    @media screen and (max-width: 1024px) {
+        .width_85px {
+            width: 65px;
+        }
+        .calc_width_85 {
+            width: calc(100% - 65px);
+        }
+        .shipperTxt, .airportTxt {
+            max-width: 50%;
+            flex: 0 0 50%;
+        }
+        .dateTxt-row {
+            .width_101px {
+                width: 50px;
+            }
+            .calc_width_101 {
+                width: calc(100% - 50px);
+            }
+            .col-md-3 {
+                max-width: 21.66%;
+                &.dateTxt {
+                    max-width: 35%;
+                }
+            }
+            
+        }
+        .ksmsTxt {
+            padding-left: 10px;
+        }
+        .airportTxt {
+            .col-md-7 {
+                max-width: 65%;
+                flex: 0 0 65%;
+            }
+            .col-md-5 {
+                max-width: 35%;
+            }
+            .width_50px {
+                width: 40px;
+            }
+            .calc_width_50 {
+                width: calc(100% - 40px);
+            }
+        }
+        .zip-con {
+            .zip-label {
+                width: 40px;
+            }
+            .input-text-con {
+                width: calc(100% - 40px) !important;
+            }
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .mb7 {
+            margin-bottom: 0!important;
+        }
+        .shipperTxt, .airportTxt {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+        .airportTxt {
+            .col-md-7 {
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+            .col-md-5 {
+                max-width: 100%;
+            }
+        }
+        .dateTxt-row {
+            .col-md-3 {
+                max-width: 100%;
+                padding: 0 10px!important;
+                &.dateTxt {
+                    max-width: 100%;
+                }
+            }            
+        }
+        .zip-con {
+            .zip-label {
+                width: 100%;
+            }
+            .input-text-con {
+                width: 100%!important;
+            }
+        }
+        .m-pr0 {
+            padding: 0;
+        }
+        .btn-primary {
+            margin-bottom: 10px;
+        }
+    }
+}

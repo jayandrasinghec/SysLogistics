@@ -1,0 +1,32 @@
+.actual-weight-container {
+    @media screen  and (max-width: 1024px)  {
+        .width_115px, .width_40px {
+            width: 75px;
+        }
+        .calc_width_115, .calc_width_40 {
+            width: calc(100% - 75px);
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 1024px)  {
+        .width_20  {
+            margin-bottom: 10px;
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px)  {
+        .width_20  {
+            width: 33%;
+        }
+    }
+    @media screen and (min-width: 481px) and (max-width: 767px)  {
+        .width_20  {
+            width: 50%;
+        }
+    }
+
+    @media screen and (max-width: 480px)  {
+        .width_20  {
+            flex-direction: column;
+            width: 100%;
+        }
+    }    
+}

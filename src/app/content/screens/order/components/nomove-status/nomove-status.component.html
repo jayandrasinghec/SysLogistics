@@ -1,0 +1,93 @@
+<div class="page-container sp-component-container nomove-status mt15">
+    <div class="sp-component-container-inner auto-height">
+        <h4 class="title">No Move Status </h4>
+        <div class="top-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="field-row mob-mb0">
+                        <label class="label-nomandatory width_70px mb0">No Move Status/Code: </label>
+                        <div class="input-text-con calc_width_70">
+                            <app-dropdown-grid [gridList]="statusCodes" [headers]="statusCodesHeaders"
+                                [required]="true"
+                                [displayKey]="statusCodesHeaders[1][1]"
+                                (selection)="statusCodeSelecthandler($event,statusCodesHeaders[0][1])"
+                                [selectedValue]="noMoveSelectedStatus" [reset]="ddReset" [tabindex]="1"
+                                [isEditMode]="isEditMode"
+                                [jsonField]="'no_Move_Code'"
+                                ></app-dropdown-grid>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="field-row mb0">
+                        <label class="label-nomandatory width_70px  align-top">Comments:</label>
+                        <div class="input-text-con calc_width_70">
+                         <!--   <textarea [(ngModel)]="model.comment" [tabindex]="2"  autocomplete="nope" (change)="commentChangehandler($event)" [class.error]="!txtAreaValid"></textarea> -->
+                         <app-textarea  
+                           [height]="'80px'"
+                           [class]="!txtAreaValid ? 'error' : ''"   
+                           [value]="model.comment"                         
+                           (modelChange)="commentChangehandler($event)"                            
+                           [isEditMode]="isEditMode"
+                           [jsonField]="'comment'"></app-textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center justify-content-end h-100">
+                        <button class="btn btn-primary tab-w110px" type="button" [tabindex]="3"
+                            (click)="addBtnClickHandler($event)">{{txtAddButton}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="table-wrapper">
+            <table class="table table-striped table-bordered table-fixed">
+                <thead>
+                    <tr>
+                        <!-- <th><label class="checkbox"><input type="checkbox"><span class="checkmark"></span></label></th> -->
+                        <th width="90" class="text-center">Edit</th>
+                        <th width="150">Date</th>
+                        <th width="150">Time </th>
+                        <th width="160">By </th>
+                        <th width="120">Code </th>
+                        <th>Comments </th>
+                        <th width="90" class="text-center">Delete</th>
+
+                    </tr>
+                </thead>
+                <perfect-scrollbar style="max-height: 330px;" >
+                <tbody style="max-height: 330px; overflow-x: auto;">
+                    <tr *ngFor="let row of noMoveData;let i= index">
+                        <td width="90" class="text-center">
+                            <span [ngClass]="(row.statusCode && row.statusCode === 'I') ? 'enable-edit' : 'disable-edit' " (click)="editClickHandler($event,row,i)">
+                                <img src="../../../../assets/images/icon/edit.png" alt="" />
+                            </span>
+                        </td>
+                        <td width="150">{{getDate(row)}}</td>
+                        <td width="150">{{getTime(row)}}</td>
+                        <td width="160">{{userName}}</td>
+                        <td width="120">{{row.no_Move_Code}} </td>
+                        <td>{{row.comment}} </td>
+                        <td width="90" class="text-center">
+                            <span [ngClass]="(row.statusCode && row.statusCode === 'I') ? 'enable-edit' : 'disable-edit' " (click)="deleteClickHandler($event,row,i)">
+                                <img src="../../../../assets/images/icon/delete.png" alt="" />
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+                </perfect-scrollbar>
+            </table>
+        </div>
+
+        <div class="nav-con mob-mb10">
+            <div class="d-flex flex-row">
+                <button class="btn btn-primary mr-auto tab-w110px " type="button"
+                    (click)="closeBtnClickHandler($event)">Close</button>
+                <button class="btn btn-primary ml-auto tab-w110px " type="button" (click)="saveBtnClickHandler($event)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

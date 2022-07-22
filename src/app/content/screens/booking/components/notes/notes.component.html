@@ -1,0 +1,32 @@
+<div class="page-container notes-page nopadding"> 
+    <div class="section-con">
+        <div class="component-container">
+            <div class="title-con">Internal Notes</div>
+            <div class="content-con">    
+                <app-input-notes [height]="100" [isEditMode]="isEditMode" [noteList]="internalNotes" [setFocus]="true"
+                [modelName]="model.internal_Notes" (modelChange)="internalNotesChangehandler($event)" 
+                [jsonField]="'internal_Notes'"></app-input-notes>  
+            </div>
+        </div>
+    </div>
+    <div class="section-con">
+        <div class="component-container">
+            <div class="title-con">Folder Notes</div>
+            <div class="content-con">
+                <app-input-notes [height]="100" [noteList]="folderNotes" [isEditMode]="isEditMode" 
+                 [modelName]="model.folder_Notes" (modelChange)="folderNotesChangehandler($event)"
+                 [jsonField]="'folder_Notes'"></app-input-notes>  
+            </div>
+        </div>
+    </div>
+    <div class="section-con">
+        <div class="component-container">
+            <div class="title-con">Invoice Notes</div>
+            <div class="content-con">
+                    <app-input-notes [height]="100" [noteList]="invoiceNotes" [isEditMode]="isEditMode" 
+                    [modelName]="model.invoice_Notes" (modelChange)="invoiceNotesChangehandler($event)"
+                    [jsonField]="'invoice_Notes'"></app-input-notes>  
+            </div>
+        </div>
+    </div>
+</div>

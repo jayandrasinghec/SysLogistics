@@ -1,0 +1,9 @@
+<div  class="component-container order-title mb10" *ngIf="model">
+    <app-ribbon 
+        [ribbonModel]="model"
+        [showOrderDetails]="false">
+    </app-ribbon>
+</div>
+<div class="status-bar-container" *ngIf="model">
+    <app-status-bar [progress]="progress" [description]="description"></app-status-bar>
+</div>

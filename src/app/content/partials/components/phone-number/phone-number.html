@@ -1,0 +1,10 @@
+<input #ipElement
+ [value]="(value)?(value | phoneNumber):''"
+ [class]="class"
+ [type]="type"
+ [placeholder]="placeHolder"
+ [required]="required"
+ [readonly]="!isEditable()"
+ [attr.tabindex]="tabindex"
+ autocomplete="nope"
+ (change)="textChange($event)" (input)="iptextChangehandler($event)"  (focusout)="focusOutFunction($event)"   />

@@ -1,0 +1,42 @@
+<div class="page-container sp-component-container">
+    <div class="sp-component-container-inner">
+        <div class=" max-w960 margin_auto">
+            <div class="title">View Charges </div>
+            <div class="table-wrapper">
+                <table class="viewcharges_table table table-striped table-bordered table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="paddleft40">Type</th>
+                            <th class="paddleft40">Description</th>
+                            <th class="paddleft40">Amount</th>
+                        </tr>
+                    </thead>
+                    <perfect-scrollbar style="max-height: 556px;" [scrollIndicators]>
+                        <tbody style="overflow-x: auto;">
+                            <tr *ngFor="let item of arrPricesDetails">
+                                <td class="paddleft40">{{item.charge_Type}}</td>
+                                <td class="paddleft40">{{item.charge_Description}}</td>
+                                <td class="paddleft40">{{item.charge_Amount}}</td>
+                            </tr>
+                        </tbody>
+                    </perfect-scrollbar>
+                </table>
+                <div class="price-box">
+                    <div class="item-con">
+                        <label class="label-mandatory">Total Price:</label>
+                        <div class="ip-con">
+                            <app-input-number [bgcolor]="'#ebebeb'" [textAlign]="'left'" [editable]="false"
+                                [value]="totalCharges" [fontWeight]="'bold'"></app-input-number>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="nav-con">
+            <div class="max-w960 d-flex flex-row m-auto mt10">
+                <button class="btn btn-primary ml-auto tab-w110px" type="button"
+                    (click)="closeBtnClickHandler($event)">Close Form</button>
+            </div>
+        </div>
+    </div>
+</div>
